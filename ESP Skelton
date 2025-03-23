@@ -1,0 +1,61 @@
+-- Ensure the script runs in a LocalScript in StarterPlayerScripts or StarterGui
+
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "SkeletonGui"
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+-- Create the Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 100)
+frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.Parent = screenGui
+
+-- Add Title Text
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 30)
+title.Text = "Skeleton GUI"
+title.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Parent = frame
+
+-- Create the Close Button
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 30, 0, 30)
+closeButton.Position = UDim2.new(1, -35, 0, 5)
+closeButton.Text = "X"
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Parent = frame
+
+closeButton.MouseButton1Click:Connect(function()
+	screenGui:Destroy()  -- Destroys the GUI when the close button is clicked
+end)
+
+-- Add Dragging Functionality
+local dragStart, dragInput, dragEnd
+local dragging = false
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	frame.Position = UDim2.new(frame.Position.X.Scale, delta.X, frame.Position.Y.Scale, delta.Y)
+end
+
+frame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		dragStart = input.Position
+		input.Changed:Connect(function()
+			if dragging then
+				updateInput(input)
+			end
+		end)
+	end
+end)
+
+frame.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = false
+	end
+end)
