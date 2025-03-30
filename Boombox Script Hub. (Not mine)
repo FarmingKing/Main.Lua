@@ -1,0 +1,3643 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Boombox Script Hub (Not My Scripts)",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Loading...",
+   LoadingSubtitle = "by FarmingKing",
+   Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Enter the Key from the Link!",
+      Subtitle = "Enter Key",
+      Note = "The Pastebin Link -> ", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Roblox999"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+Rayfield:Notify({
+   Title = "Boombox Script Executed",
+   Content = "Boombox GUI'S",
+   Duration = 6.5,
+   Image = 4483362458,
+})
+
+local GUITab = Window:CreateTab("Boombox GUI", 4483362458) -- Title, Image
+
+local Section = GUITab:CreateSection("Pineapple Boombox GUI")
+
+local Button = GUITab:CreateButton({
+   Name = "PineApple GUI (Press Once)",
+   Callback = function()
+        local owner = "MirayXS"
+local branch = "anti-steal"
+ 
+local function webImport(file)
+    return loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/Aux/%s/%s.lua"):format(owner, branch, file)), file .. '.lua')()
+end
+ 
+webImport("Pineapple")  
+   end,
+})
+
+local Section = GUITab:CreateSection("Boombox-Hub-V2 GUI")
+
+local Button = GUITab:CreateButton({
+   Name = "Boombox-Hub-V2 GUI (Press Once)",
+   Callback = function()
+        local Request; if syn then
+	Request = syn.request
+elseif request then
+	Request = request
+elseif http_request then
+	Request = http_request
+end
+
+local Create = function(Class,Properties)
+	Properties = Properties or {};
+	local Obj = Instance.new(Class)
+	for K,V in next, Properties do 
+		if rawequal(K,'Parent') then
+			continue;
+		end
+		Obj[K] = V;
+	end
+	if Properties['Parent'] then
+		Obj['Parent'] = Properties['Parent']
+	end
+	return Obj
+end
+
+workspace['FallenPartsDestroyHeight'] = 0/1/0
+
+local UI, Origin = game:GetObjects('rbxassetid://5344970025&version=54')[1]; UI['Parent'] = game:GetService('CoreGui')
+
+local Main, Notification, Control, Default, G, RL = UI['Main-Frame'], UI['Notification'], UI['Minimize/Close'], Color3.fromRGB(217,60,56), getgenv or function() return _G end, true
+
+G = G(); G.__mode = 'k'; G['C'] = {}; C.__mode = 'k'; G['Create'] = Create
+
+local CBackground, CImage, CText, CScroll = {}, {}, {}, {}
+
+local Cast = {
+	BackgroundColor3 = CBackground;
+	ImageColor3 = CImage;
+	TextColor3 = CText;
+	ScrollBarImageColor3 = CScroll;
+}
+
+local T = UI:GetDescendants(); for A = 1,#T do local B = T[A]
+	for C,D in next, Cast do
+		coroutine.resume(coroutine.create(function()
+			if tostring(B[C]) == tostring(Default) then
+				D[#D+1] = B;
+			end
+		end))
+	end
+end; T = nil
+
+local Menu, Sectors, RFE = Main['Main-Menu'], Main['Sector-Holder'], game:GetService('SoundService').RespectFilteringEnabled
+
+local Dashboard = Sectors['Home']
+
+local Tabs, TMenu = Dashboard['Tab-Frame']['Tab-Holder'], Dashboard['Tab-Menu']
+
+Notification['Parent'] = game:GetService('CorePackages'); Notification['Main-Frame'].Position = UDim2.new(1.036,0,.753,0)
+
+local Tween = function(Obj,Time,Style,Direction,Table)
+	game:GetService('TweenService'):Create(Obj,TweenInfo.new(Time,Enum.EasingStyle[Style],Enum.EasingDirection[Direction],0,false,0),Table):Play()
+end
+
+Main['Position'] = Main['Position'] + UDim2.new(-1,0,0,0); Origin = Main['Position']; Tween(Main,.6,'Quad','Out',{Position = Main['Position'] + UDim2.new(1,0,0,0)})
+Control['Position'] = Control['Position'] + UDim2.new(-1,0,0,0); Tween(Control,.6,'Quad','Out',{Position = Control['Position'] + UDim2.new(1,0,0,0)})
+
+local Push = Instance.new('BindableEvent')
+
+local Notify = function(Text,Duration)
+	Duration = Duration or 4
+	coroutine.wrap(function()
+		local Clone = Notification:Clone(); local Frame = Clone['Main-Frame']; Clone['Parent'] = game:GetService('CoreGui'); Frame['TextBox'].Text = Text
+		Push:Fire()
+		local Event = Push['Event']:Connect(function()
+			Tween(Frame,.4,'Quad','InOut',{Position = Frame['Position'] + UDim2.new(0,0,-.121,0)})
+		end)
+		Tween(Frame,.4,'Quad','InOut',{Position = UDim2.new(.8707,0,.753,0)}); wait(Duration + .4); Tween(Frame,.4,'Quad','InOut',{Position = UDim2.new(1.036,0,.753,0)}); wait(.4)
+		Clone:Destroy(); Event:Disconnect()
+	end)()
+end
+
+coroutine.wrap(function()
+	wait(1.6)
+	game:GetService('UserInputService')['InputBegan']:Wait()
+	Notify('._ Boombox-Hub Loaded: discord.gg/bnDsbVvHmU for support.',4)
+	wait(.4)
+	if RFE then
+		Notify('RFE is enabled on this game. Setting Time Positions and using Backpack-Plays are disabled.',5)
+	end
+	wait(.4)
+	Notify('Visualizer is currently not working. A massive update for Boombox Hub will come soon.',7)
+end)()
+
+local Debounce = true
+
+local Draggable = function(Frame)
+	local DToggle, DInput, DStart, SPos
+	local Upd = function(Input)
+		if Debounce then
+			Delta = Input['Position'] - DStart; Prime = UDim2.new(SPos['X'].Scale, SPos['X'].Offset + Delta['X'], SPos['Y'].Scale, SPos['Y'].Offset + Delta['Y'])
+			Tween(Frame,.06,'Sine','Out',{Position = Prime})
+		end
+	end
+	C[#C+1] = Frame['InputBegan']:Connect(function(Input)
+		if (Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch) then
+			DToggle = true
+			DStart = Input.Position
+			SPos = Frame.Position
+			C[#C+1] = Input['Changed']:Connect(function()
+				if (Input.UserInputState == Enum.UserInputState.End) then
+					DToggle = false
+				end
+			end)
+		end
+	end)
+	C[#C+1] = Frame['InputChanged']:Connect(function(Input)
+		if (Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch) then
+			DInput = Input
+		end
+	end)
+	C[#C+1] = game:GetService('UserInputService').InputChanged:Connect(function(Input)
+		if (Input == DInput and DToggle) then
+			Upd(Input)
+		end
+	end)
+end
+
+Draggable(Main); Draggable(Control)
+
+local MSelected = Menu['Home']
+
+local MNavigate, TNavigate = function(Button,Y)
+	C[#C+1] = Button['MouseButton1Click']:Connect(function()
+		if Debounce then
+			Debounce, MSelected = false, Button
+			local T = Menu:GetChildren(); for I = 1,#T do local V = T[I]
+				if V:IsA('TextButton') then
+					if V ~= Button then
+						if table.find(CText,V) then
+							table.remove(CText,table.find(CText,V))
+						end
+						Tween(V,.3,'Quint','InOut',{TextColor3 = Color3.fromRGB(100,100,100)})
+					else
+						CText[#CText+1] = V
+						Tween(V,.3,'Quint','InOut',{TextColor3 = Default})
+					end
+				end
+			end
+			Tween(Sectors,.6,'Quad','InOut',{Position = UDim2.new(0,0,Y,0)}); wait(.6)
+			Debounce = true
+		end
+	end)
+	C[#C+1] = Button['MouseEnter']:Connect(function()
+		if MSelected ~= Button then
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = Color3.fromRGB(170,170,170)})
+		end
+		Button['MouseLeave']:Wait()
+		if MSelected ~= Button then
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = Color3.fromRGB(100,100,100)})
+		end
+	end)
+end, function(Button,X)
+	C[#C+1] = Button['MouseButton1Click']:Connect(function()
+		if Debounce then
+			Debounce = false
+			local Offset; if Button == TMenu['Scripts'] then
+				Offset = .03
+			elseif Button == TMenu['Anti-Logger'] then
+				Offset = .068
+			else
+				Offset = .076
+			end
+			Tween(TMenu['Selector'],.4,'Quint','InOut',{Position = Button['Position'] + UDim2.new(Offset,0,.774,0)})
+			Tween(Tabs,.6,'Quad','InOut',{Position = UDim2.new(X,0,0,0)}); wait(.6)
+			Debounce = true
+		end
+	end)
+	C[#C+1] = Button['MouseEnter']:Connect(function()
+		Tween(Button,.3,'Quint','InOut',{TextColor3 = Color3.fromRGB(200,200,200)})
+		Button['MouseLeave']:Wait()
+		Tween(Button,.3,'Quint','InOut',{TextColor3 = Color3.fromRGB(120,120,120)})
+	end)
+end
+
+MNavigate(Menu['Home'],0); MNavigate(Menu['Settings'],-1); MNavigate(Menu['Help'],-2); TNavigate(TMenu['Audio-Logger'],0); TNavigate(TMenu['Asset-Decoder'],-1); TNavigate(TMenu['Anti-Logger'],-2); TNavigate(TMenu['Scripts'],-3)
+
+local Logger, Decoder, AntiLog, Scripts = Tabs['Audio-Logger'], Tabs['Asset-Decoder'], Tabs['Anti-Logger'], Tabs['Scripts']; local Logged = Logger['Logged-Sounds']; local Template = Logged['TextButton']; Template['Parent'] = game:GetService('CorePackages'); Logged['UIListLayout'].Padding = UDim.new(0,5)
+
+local RArg, RButton, PButton, CId, CButton = 'PlaySong', Sectors['Settings']['Boombox-Type']['Standard'], Scripts['Preset']
+
+local AddFunc = function(Type,Button,Func)
+	if Type == 'Main' then
+		local IColor, TColor = Button['Parent'].ImageColor3, Button['TextColor3']
+		C[#C+1] = Button['MouseButton1Click']:Connect(function()
+			coroutine.wrap(Func)()
+			Tween(Button['Parent'],.03,'Sine','Out',{ImageColor3 = Color3.fromRGB(22, 24, 27)}); wait(.03)
+			Tween(Button['Parent'],.6,'Sine','Out',{ImageColor3 = IColor})
+		end)
+		C[#C+1] = Button['MouseEnter']:Connect(function()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = Default})
+			Button['MouseLeave']:Wait()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = TColor})
+		end)
+	elseif Type == 'Sounds' then
+		local IColor, TColor = Button['Frame'].ImageColor3, Button['TextColor3']
+		C[#C+1] = Button['MouseButton1Click']:Connect(function()
+			coroutine.wrap(Func)()
+			Tween(Button['Frame'],.2,'Back','InOut',{ImageColor3 = Color3.fromRGB(22, 24, 27)})
+			SObject, CId, CButton = Button['Sound'].Value, Button['Sound'].Value['SoundId'], Button
+			local T = Button['Parent']:GetChildren(); for I = 1,#T do local V = T[I]
+				if V ~= CButton and not V:IsA('UIListLayout') and not V:IsA('UIPadding') then
+					Tween(V['Frame'],.2,'Quad','InOut',{ImageColor3 = Color3.fromRGB(33, 37, 41)})
+				end
+			end
+		end)
+		C[#C+1] = Button['MouseEnter']:Connect(function()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = Default})
+			Button['MouseLeave']:Wait()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = TColor})
+		end)
+	elseif Type == 'Types' then
+		local IColor, TColor = Button['Frame'].ImageColor3, Button['TextColor3']
+		C[#C+1] = Button['MouseButton1Click']:Connect(function()
+			coroutine.wrap(Func)()
+			Tween(Button['Frame'],.2,'Back','InOut',{ImageColor3 = Color3.fromRGB(22, 24, 27)})
+			RButton = Button
+			local T = Button['Parent']:GetChildren(); for I = 1,#T do local V = T[I]
+				if V ~= RButton and not V:IsA('UIListLayout') and not V:IsA('UIPadding') then
+					Tween(V['Frame'],.2,'Quad','InOut',{ImageColor3 = Color3.fromRGB(33, 37, 41)})
+				end
+			end
+		end)
+		C[#C+1] = Button['MouseEnter']:Connect(function()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = Default})
+			Button['MouseLeave']:Wait()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = TColor})
+		end)
+	elseif Type == 'Presets' then
+		local IColor, TColor = Button['Frame'].ImageColor3, Button['TextColor3']
+		C[#C+1] = Button['MouseButton1Click']:Connect(function()
+			coroutine.wrap(Func)()
+			Tween(Button['Frame'],.2,'Back','InOut',{ImageColor3 = Color3.fromRGB(22, 24, 27)})
+			PButton = Button
+			local T = Button['Parent']:GetChildren(); for I = 1,#T do local V = T[I]
+				if V ~= PButton and not V:IsA('UIListLayout') and not V:IsA('UIPadding') then
+					Tween(V['Frame'],.2,'Quad','InOut',{ImageColor3 = Color3.fromRGB(33, 37, 41)})
+				end
+			end
+		end)
+		C[#C+1] = Button['MouseEnter']:Connect(function()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = Default})
+			Button['MouseLeave']:Wait()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = TColor})
+		end)
+	elseif Type == 'Commands' then
+		local TColor = Button['TextColor3']
+		C[#C+1] = Button['MouseButton1Click']:Connect(function()
+			coroutine.wrap(Func)()
+		end)
+		C[#C+1] = Button['MouseEnter']:Connect(function()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = Default})
+			Button['MouseLeave']:Wait()
+			Tween(Button,.3,'Quint','InOut',{TextColor3 = TColor})
+		end)
+	end
+end
+
+local Escape, JSONEncode, JSONDecode = function(Input)
+	return game:GetService('HttpService'):UrlEncode(Input)
+end, function(Input)
+	return game:GetService('HttpService'):JSONEncode(Input)
+end, function(Input)
+	return game:GetService('HttpService'):JSONDecode(Input)
+end
+
+local Encode, Decode = function(AssetId)
+	if AssetId == nil then
+		return;
+	end
+	local Response = Request({
+		Url = 'https://riptxde.dev/anti-logger-v2.php/?mode=false&id='..game:GetService('HttpService'):UrlEncode(AssetId);
+		Method = 'GET';
+	})['Body']
+	if Response:match('^Error: ') then
+		Notify(Response,7)
+	elseif Response:match('^Notice: New location detected') then
+		Notify(Response,20)
+		wait(.8)
+		Notify('Once you have your verification code, please use ;verify {code} in the command bar.',20)
+	elseif Response:match('discord.gg/DMakTbZ') then
+		Notify('You are not whitelisted, Playing via jack\'s free anti-steal [less secure].',4)
+		wait(.4)
+		local CustomMessage = ''
+		if pcall(function() readfile('Boombox-Hub-Custom-Message.txt') end) then
+			CustomMessage = readfile('Boombox-Hub-Custom-Message.txt')
+		end
+		return Response:gsub('    ', ' ' .. CustomMessage:gsub('%%', '%%%%') .. ' ')
+	else
+		coroutine.wrap(function()
+			local Phase = function()
+				return Request({
+					Url = 'https://riptxde.dev/anti-logger-v2.php/?mode=true&id='..game:GetService('HttpService'):UrlEncode(AssetId);
+					Method = 'GET';
+				})['Body']
+			end
+			wait(.06); Phase()
+		end)()
+		if pcall(function() readfile('Boombox-Hub-Custom-Message.txt') end) then
+			return Response:format(readfile('Boombox-Hub-Custom-Message.txt'):gsub('[&#]',''))
+		else
+			return Response:format('')
+		end
+	end
+end, function(AssetId)
+	local Prefix = AssetId:gsub('%s',''):lower()
+	if not Prefix:match('^http://www.roblox.com/asset/%?id=') and not Prefix:match('^https://www.roblox.com/asset/%?id=') and not Prefix:match('^rbxassetid://') then
+		AssetId = 'http://www.roblox.com/asset/?id='..AssetId
+	end
+	local Response = Request({
+		Body = 'soundid='..Escape(Escape(AssetId:gsub(' ','')));
+		Url = 'https://riptxde.dev/audio-logger-v2.php/';
+		Method = 'POST';
+	})['Body']
+	if Response:len() < 1 then
+		Notify('Invalid parse. (B)',6)
+	else
+		if Response:match('^Error: ') then
+			Notify(Response,7)
+		elseif Response:match('^Notice: New location detected') then
+			Notify(Response,20)
+			wait(.8)
+			Notify('Once you have your verification code, please use ;verify {code} in the command bar.',20)
+		else
+			return Response
+		end
+	end
+end
+
+local Ignore = {
+'rbxasset://sounds/action_footsteps_plastic.mp3';
+'rbxasset://sounds/impact_water.mp3';
+'rbxasset://sounds/uuhhh.mp3';
+'rbxasset://sounds/action_swim.mp3';
+'rbxasset://sounds/action_get_up.mp3';
+'rbxasset://sounds/action_falling.mp3';
+'rbxasset://sounds/action_jump.mp3';
+'rbxasset://sounds/action_jump_land.mp3';
+}
+
+local Sounds, IdSet, LToggle, Listening = {}, {}, false; Sounds.__mode = 'k'
+
+AddFunc('Main',Logger['Copy ID'].TextButton, function()
+	if CId then
+		setclipboard(CId); Notify('Successfully set raw asset-id to clipboard.',4)
+	end
+end)
+
+AddFunc('Main',Logger['Write ID To File'].TextButton, function()
+	if CId then
+		if not isfolder('RH-LoggedIds') then
+			makefolder('RH-LoggedIds')
+		end
+		writefile('RH-LoggedIds/Id-'..(#listfiles('RH-LoggedIds')+1)..'.txt',CId)
+		Notify('Successfully wrote raw asset-id to file: workspace/RH-LoggedIds/Id-'..(#listfiles('RH-LoggedIds'))..'.txt',6)
+	end
+end)
+
+AddFunc('Main',Logger['Send ID to Decoder'].TextButton,function()
+	if CId then
+		if not RL then
+			return
+		end; RL = false
+		local AssetId; AssetId = Decode(CId)
+		if AssetId then
+			Decoder['Asset-Id'].TextBox['Text'] = AssetId
+			Tween(TMenu['Selector'],.4,'Quint','InOut',{Position = TMenu['Asset-Decoder']['Position'] + UDim2.new(.076,0,.774,0)})
+			Tween(Tabs,.6,'Quad','InOut',{Position = UDim2.new(-1,0,0,0)}); wait(.6)
+			Notify('Successfully decoded asset-id.',4)
+		end
+		RL = true
+	end
+end)
+
+AddFunc('Main',Logger['Listen'].TextButton,function()
+	if CId then
+		LToggle = not LToggle
+		if LToggle then
+			Listening = Create('Sound',{
+				SoundId = CId;
+				Looped = true;
+				Parent = game:GetService('CorePackages');
+			})
+			Listening:Play()
+			Logger['Listen'].TextButton['Text'] = 'Stop'
+		elseif Listening and type(Listening) == 'userdata' then
+			Listening:Destroy()
+			Logger['Listen'].TextButton['Text'] = 'Listen'
+		end
+	end
+end)
+
+AddFunc('Main',Logger['Put ID in Ignore List'].TextButton,function()
+	if CId then
+		Ignore[#Ignore+1] = CId
+	end
+end)
+
+AddFunc('Main',Logger['Clear All'].TextButton,function()
+	Sounds, IdSet = {}, {}; Sounds.__mode = 'k'
+	CButton, SObject, CId = nil,nil,nil
+	local T = Logged:GetChildren(); for I = 1,#T do local V = T[I]
+		if not V:IsA('UIListLayout') and not V:IsA('UIPadding') then
+			coroutine.wrap(function()
+				Tween(V,.2,'Quad','Out',{TextTransparency = 1})
+				Tween(V['Frame'],.2,'Quad','Out',{ImageTransparency = 1})
+				wait(.2); V:Destroy()
+			end)()
+		end
+	end
+	Tween(Logged,.2,'Quad','InOut',{CanvasSize = UDim2.new(0,0,2,0)})
+end)
+
+AddFunc('Main',Logger['Scan Workspace'].TextButton, function()
+	local T = workspace:GetDescendants()
+	for I = 1,#T do local V = T[I]
+		if V:IsA('Sound') then
+			if V['IsLoaded'] ~= false and not table.find(Ignore,V['SoundId']) and not table.find(Sounds,V) and not table.find(IdSet,V['SoundId']) then
+				coroutine.wrap(function()
+					local Clone = Template:Clone()
+					Clone['TextTransparency'] = 1; Clone['Frame'].ImageTransparency = 1
+					Bool,Info = pcall(function() return game:GetService('MarketplaceService'):GetProductInfo(V['SoundId']:gsub('rbxassetid://','',1):gsub('http://www.roblox.com/asset/%?id=','',1):gsub('https://www.roblox.com/asset/%?id=','',1)) end)
+					if Bool then
+						Clone['Text'] = Info['Name']
+					elseif V['SoundId']:match('^rbxasset://sounds/') then
+						Clone['Text'] = V['SoundId']:gsub('rbxasset://sounds/','',1)
+					else
+						Clone['Text'] = V['Name']
+					end
+					Clone['Sound'].Value = V
+					Tween(Clone,.2,'Quad','Out',{TextTransparency = 0})
+					Tween(Clone['Frame'],.2,'Quad','Out',{ImageTransparency = 0})
+					Tween(Logged,.2,'Quad','InOut',{CanvasSize = UDim2.new(0,0,0,Logged['UIListLayout'].AbsoluteContentSize['Y'] * 2)})
+					Clone['Parent'] = Logged
+					AddFunc('Sounds',Clone,function()
+						Logger['Asset-Id Preview'].TextBox['Text'] = V['SoundId']
+					end)
+				end)()
+				Sounds[#Sounds+1] = V; IdSet[#IdSet+1] = V['SoundId']
+			end
+		end
+		if I % 1080 == 0 then
+			game:GetService('RunService')['Heartbeat']:Wait()
+		end
+	end
+end)
+
+AddFunc('Main',Logger['Scan Game'].TextButton, function()
+	local T = game:GetDescendants()
+	for I = 1,#T do local V = T[I]
+		if V:IsA('Sound') then
+			if V['IsLoaded'] ~= false and not table.find(Ignore,V['SoundId']) and not table.find(Sounds,V) and not table.find(IdSet,V['SoundId']) then
+				coroutine.wrap(function()
+					local Clone = Template:Clone()
+					Clone['TextTransparency'] = 1; Clone['Frame'].ImageTransparency = 1
+					Bool,Info = pcall(function() return game:GetService('MarketplaceService'):GetProductInfo(V['SoundId']:gsub('rbxassetid://','',1):gsub('http://www.roblox.com/asset/%?id=','',1):gsub('https://www.roblox.com/asset/%?id=','',1)) end)
+					if Bool then
+						Clone['Text'] = Info['Name']
+					elseif V['SoundId']:match('^rbxasset://sounds/') then
+						Clone['Text'] = V['SoundId']:gsub('rbxasset://sounds/','',1)
+					else
+						Clone['Text'] = V['Name']
+					end
+					Clone['Sound'].Value = V
+					Tween(Clone,.2,'Quad','Out',{TextTransparency = 0})
+					Tween(Clone['Frame'],.2,'Quad','Out',{ImageTransparency = 0})
+					Tween(Logged,.2,'Quad','InOut',{CanvasSize = UDim2.new(0,0,0,Logged['UIListLayout'].AbsoluteContentSize['Y'] * 2)})
+					Clone['Parent'] = Logged
+					AddFunc('Sounds',Clone,function()
+						Logger['Asset-Id Preview'].TextBox['Text'] = V['SoundId']
+					end)
+				end)()
+				Sounds[#Sounds+1] = V; IdSet[#IdSet+1] = V['SoundId']
+			end
+		end
+		if I % 1080 == 0 then
+			game:GetService('RunService')['Heartbeat']:Wait()
+		end
+	end
+end)
+
+local Presets;
+if not pcall(function()
+	Presets = JSONDecode(readfile('Boombox-Hub-Presets.dat'))
+	assert(Presets['circle'] ~= nil)
+end) then
+	writefile('Boombox-Hub-Presets.dat', JSONEncode({
+		['circle'] = [=[for K,V in next, Tools do
+			coroutine.wrap(function()
+				local BP, BG, PCF = V['VPosition'].Value, V['VGyro'].Value
+				while Selected['Playing'] do
+					local I, Vol = 1, 0
+					repeat
+						Vol = Selected['PlaybackLoudness']
+						PRY = math.rad(I+(K*(360/#Tools)))
+						PZ = OffsetSensitivity + Vol / (Sensitivity ~= 100 and (100 - Sensitivity) or .01)
+						GY = OffsetTiltSensitivity + Vol / (TiltSensitivity ~= 100 and (100 - TiltSensitivity) or .01)
+						PCF = CFrame.new(Root['Position']) * CFrame.Angles(0,PRY,0) * CFrame.new(0,0,PZ)
+						BP['Position'] = PCF.p
+						BG['CFrame'] = CFrame.new(BG['Parent'].Position, Root['Position'] + Vector3.new(0, GY, 0))
+						I = I + Speed
+						game:GetService('RunService')['RenderStepped']:Wait()
+					until I >= 360 or not Selected['Playing']
+				end
+			end)()
+		end]=];
+		['line'] = [=[for K,V in next, Tools do
+			coroutine.wrap(function()
+				local BP, BG, PCF = V['VPosition'].Value, V['VGyro'].Value
+				while Selected['Playing'] do
+					local I, Vol = 1, 0
+					repeat
+						if K == 1 then
+							Samples[#Samples+1] = Selected['PlaybackLoudness']
+						end
+						Vol = (Samples[#Samples - (K-1)] or 0) / (Sensitivity ~= 100 and (100 - Sensitivity) or .01)
+						BP['Position'] = Root['Position'] + Vector3.new(K * 1.6,Vol + OffsetSensitivity,0)
+						I = I + Speed
+						game:GetService('RunService')['RenderStepped']:Wait()
+					until I >= 360 or not Selected['Playing']
+				end
+			end)()
+		end]=];
+	}))
+	Presets = JSONDecode(readfile('Boombox-Hub-Presets.dat'))
+end
+
+local PTemplate, CPreset = Scripts['Preset'].Circle, Presets['circle']
+
+for K,V in next, Presets do
+	Clone = PTemplate:Clone()
+	Clone['Text'] = K
+	Clone['Name'] = K
+	AddFunc('Presets',Clone,function()
+		CPreset = V
+	end)
+	Clone['Parent'] = Scripts['Preset']
+	Tween(Scripts['Preset'],.2,'Quad','InOut',{CanvasSize = UDim2.new(0,0,0,Scripts['Preset'].UIListLayout['AbsoluteContentSize'].Y * 2)})
+end
+
+PTemplate['Parent'] = game:GetService('CorePackages')
+
+AddFunc('Types',Sectors['Settings']['Boombox-Type']['Da Hood'],function()
+	RArg = 'Boombox'
+	writefile('Boombox-Hub-Settings.dat', JSONEncode({
+		Type = 'Da Hood';
+		Mode = RArg;
+		Color = tostring(Default);
+	}))
+end)
+
+AddFunc('Main',Decoder['Decode'].TextButton,function()
+	if not RL then
+		return
+	end; RL = false
+	local AssetId; AssetId = Decode(Decoder['Asset-Id'].TextBox['Text'])
+	if AssetId then
+		Decoder['Asset-Id'].TextBox['Text'] = AssetId
+		Notify('Successfully decoded asset-id.',4)
+	end
+	RL = true
+end)
+
+AddFunc('Main',Decoder['Decode File'].TextButton,function()
+	if not RL then
+		return
+	end; RL = false
+	local Content;
+	if pcall(function()
+		Content = readfile(Decoder['Asset-Id'].TextBox['Text']):gsub(' ','')
+	end) then
+		local AssetId; AssetId = Decode(Content)
+		if AssetId then
+			Decoder['Asset-Id'].TextBox['Text'] = AssetId
+			Notify('Successfully decoded asset-id.',4)
+		end
+	end
+	RL = true
+end)
+
+AddFunc('Main',Decoder['Copy ID'].TextButton,function()
+	if Decoder['Asset-Id'].TextBox['Text']:len() > 0 then
+		setclipboard(Decoder['Asset-Id'].TextBox['Text'])
+		Notify('Successfully copied asset-id to clipboard.',4)
+	end
+end)
+
+local ToClock = function(Seconds)
+	if Seconds < 1 then
+		return '0:00';
+	else
+		local Mins = ('%2.f'):format(math.floor(Seconds/60));
+		local Secs = ('%02.f'):format(math.floor(Seconds - Mins*60));
+		return Mins..':'..Secs
+	end
+end
+
+local LP, Playing, Tool = game:GetService('Players')['LocalPlayer']
+
+local RN = Random.new()
+
+local LatentYield = function(N)
+	local Index = 0
+	repeat
+		game['RobloxReplicatedStorage'].GetServerVersion:InvokeServer()
+		Index = Index + 1
+	until Index >= N
+end
+
+local CancelDupe = false
+
+local DupeTools = function(Num)
+	CancelDupe = false
+	local Estimate = (game:GetService('Players')['RespawnTime'] + 1) * (Num + 1)
+	local Tools, Type, RCF = {}, workspace['CurrentCamera'].CameraType
+	for I = 1,Num + 1 do
+		if I <= Num then
+			Notify(('Approximately %s seconds until dupe is complete.'):format(math.round(Estimate - (game:GetService('Players')['RespawnTime'] + 1) * I)),1)
+		end
+		local Char = LP['Character']
+		local Root = Char:FindFirstChild('HumanoidRootPart')
+		while not Root do
+			Char['ChildAdded']:Wait()
+			Root = Char:FindFirstChild('HumanoidRootPart')
+		end
+		if I == 1 then
+			RCF = Root['CFrame']
+		end
+		LatentYield(2.0)
+		if I > Num or CancelDupe then
+			for K,V in next, Tools do
+				V['Anchored'] = false
+				V['CFrame'] = Root['CFrame']
+				LatentYield(1.0)
+			end
+			Notify('Dupe-Tools complete.',3)
+			Root['CFrame'] = RCF
+			break
+		end
+		LatentYield(2.0)
+		for IDX = 1,10 do
+			for K,V in next, LP['Backpack']:GetChildren() do
+				if V:IsA('Tool') then
+					V['Parent'] = Char
+				end
+			end
+			game:GetService('RunService')['Heartbeat']:Wait()
+		end
+		Root['CFrame'] = CFrame.new(RN:NextInteger(-3.0e4, 3.0e4),5.0e5,RN:NextInteger(-3.0e4, 3.0e4))
+		LatentYield(2.0)
+		Char['Head'].Anchored = true
+		for K,V in next, LP['Character']:GetChildren() do
+			if V:IsA('Tool') and V['Handle'] then
+				V['Parent'] = workspace
+				V['Handle'].Anchored = true
+				Tools[#Tools+1] = V['Handle']
+			end
+		end
+		(Char:FindFirstChild('Torso') or Char:FindFirstChild('UpperTorso')):Destroy()
+		local Con = Char['ChildAdded']:Connect(function(V)
+			if V:IsA('Tool') then
+				game:GetService('RunService')['Heartbeat']:Wait()
+				V['Parent'] = workspace
+				V['Handle'].Anchored = true
+			end
+		end)
+		LP['CharacterAdded']:Wait()
+		Con:Disconnect()
+	end
+end
+
+settings()['Physics'].AllowSleep = false
+settings()['Physics'].PhysicsEnvironmentalThrottle = Enum['EnviromentalPhysicsThrottle'].Disabled
+
+if not NK then
+	G['NK'] = true
+	if type(setsimulationradius) == 'function' then
+		coroutine.wrap(function()
+			repeat
+				game:GetService('RunService')['RenderStepped']:Wait()
+				setsimulationradius(1/0, 1/0)
+			until not NK
+		end)()
+	elseif type(sethiddenproperty) == 'function' then
+		coroutine.wrap(function()
+			repeat
+				game:GetService('RunService')['RenderStepped']:Wait()
+				sethiddenproperty(LP, 'MaximumSimulationRadius', 1/0)
+				sethiddenproperty(LP, 'SimulationRadius', 1/0)
+			until not NK
+		end)()
+	elseif type(set_hidden_prop) == 'function' then
+		coroutine.wrap(function()
+			repeat
+				game:GetService('RunService')['RenderStepped']:Wait()
+				set_hidden_prop(LP, 'MaximumSimulationRadius', 1/0)
+				set_hidden_prop(LP, 'SimulationRadius', 1/0)
+			until not NK
+		end)()
+	else
+		Notify('Your exploit does not have certain functions, the Visualizer may not work as expected.',7)
+	end
+end
+
+local Visualize = function(AssetId)
+	Scripts['Asset-Id'].TextBox['TextEditable'], RL = false, false
+	if pcall(function()
+		Playing = game:GetService('MarketplaceService'):GetProductInfo(AssetId)['Name']
+	end) then
+		Scripts['Asset-Id'].TextBox['TextEditable'], RL = true, true; Notify(('Play: Attempting to visualize %s under boombox settings: "%s"'):format(Playing, RButton['Name'] or 'Standard'),7)
+	else
+		Scripts['Asset-Id'].TextBox['TextEditable'], RL = true, true; Notify('Error: Invalid id given.',4)
+	end
+	local Char = LP['Character']
+	local Humanoid = Char:FindFirstChildOfClass('Humanoid')
+	Humanoid:ChangeState(2)
+	LatentYield(1.0)
+	local Root = Char['HumanoidRootPart']
+	local Tools, Forces = {}, {}
+	Humanoid:UnequipTools()
+	repeat
+		for K,V in next, Forces do
+			V:Destroy()
+			table.remove(Forces, K)
+		end
+	until #Forces == 0
+	for K,V in next, LP['Backpack']:GetChildren() do
+		if V:IsA('Tool') then
+			V['Parent'] = Char
+		end
+	end
+	for K,V in next, Char:GetChildren() do
+		if V:IsA('Tool') and V['Handle'] then
+			Tools[#Tools+1] = V
+		end
+	end
+	for K,V in next, Char:GetDescendants() do
+		if V['Name'] == 'RightGrip' then V:Destroy() end
+	end
+	LatentYield(2.0)
+	for K,V in next, Tools do
+		local BP = Create('BodyPosition',{
+			MaxForce = Vector3.new(1/0,1/0,1/0);
+			Position = V['Handle'].Position;
+			P = 1.0e5;
+		})
+		Forces[#Forces+1] = BP
+		BP['Parent'] = V['Handle']
+		local BG = Create('BodyGyro',{
+			MaxTorque = Vector3.new(1/0,1/0,1/0);
+			P = 1.0e4;
+			Parent = V['Handle'];
+		})
+		Forces[#Forces+1] = BG
+		BG['Parent'] = V['Handle']
+		local BPO = Create('ObjectValue',{
+			Value = BP;
+			Name = 'VPosition';
+			Parent = V;
+		})
+		Forces[#Forces+1] = BPO
+		BPO['Parent'] = V
+		local BGO = Create('ObjectValue',{
+			Value = BG;
+			Name = 'VGyro';
+			Parent = V;
+		})
+		Forces[#Forces+1] = BGO
+		BGO['Parent'] = V
+		V['Parent'] = Char
+	end
+	for K,V in next, Char:GetDescendants() do
+		if V['Name'] == 'RightGrip' then V:Destroy() end
+	end
+	local Encoded = Encode(AssetId)
+	if Encoded then
+		AssetId = Encoded
+	end
+	for K,V in next, Humanoid:GetPlayingAnimationTracks() do
+		V:Stop()
+	end
+	local Current = 0
+	for K,V in next, Tools do
+		if Current <= MassPlayLimit then
+			coroutine.resume(coroutine.create(function()
+				Remote = (RArg == 'Boombox' and game:GetService('ReplicatedStorage')['MainEvent'] or V:FindFirstChildOfClass('RemoteEvent'))
+				Remote:FireServer(RArg,AssetId)
+				Current = Current + 1
+			end))
+		end
+	end
+	local Selected = nil;
+	repeat
+		for A,B in next, Tools do
+			local T = B:GetDescendants()
+			for I = 1,#T do local V = T[I]
+				if V:IsA('Sound') then
+					if V['Playing'] and V['TimeLength'] ~= 0 and V['IsLoaded'] then
+						Selected = V
+					end
+				end
+			end
+		end
+		wait(.06)
+	until Selected or Char:FindFirstChildOfClass('Tool') == nil
+	if Char:FindFirstChildOfClass('Tool') == nil then
+		repeat
+			for K,V in next, Forces do
+				V:Destroy()
+				table.remove(Forces, K)
+			end
+		until #Forces == 0
+		Humanoid:UnequipTools()
+		return;
+	end
+	G['Tools'], G['Selected'], G['Root'], G['Samples'], G['Forces'] = Tools, Selected, Root, {}, Forces
+	TPos = tonumber(Scripts['Time-Position'].TextBox['Text']) or 0
+	if not RFE then
+		for K,V in next, Char:GetDescendants() do
+			if V:IsA('Sound') then
+				V['TimePosition'] = TPos
+			end
+		end
+	end
+	local PFunc = loadstring(CPreset or Presets['circle'])
+	if G['ExperimentalMode'] then
+		PFunc()
+	else
+		pcall(PFunc)
+	end
+	repeat
+		game:GetService('RunService')['Heartbeat']:Wait()
+	until not Selected['Playing']
+	Humanoid:UnequipTools()
+	repeat
+		for K,V in next, Forces do
+			V:Destroy()
+			table.remove(Forces, K)
+		end
+	until #Forces == 0
+end
+
+AddFunc('Main',Scripts['Dupe-Tools'].TextButton,function()
+	DupeTools(tonumber(Scripts['Dupe-Amount'].TextBox['Text']) or 1)
+end)
+
+AddFunc('Main',Scripts['Visualize'].TextButton,function()
+	Visualize(Scripts['Asset-Id'].TextBox['Text'])
+end)
+
+AddFunc('Main',AntiLog['Play'].TextButton,function()
+	if not RL then
+		return
+	end
+	AntiLog['Asset-Id'].TextBox['TextEditable'], RL = false, false
+	local AssetId = Encode(AntiLog['Asset-Id'].TextBox['Text'])
+	if AssetId == nil then
+		AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; return
+	end
+	local Boombox = LP['Character']:FindFirstChildOfClass('Tool')
+	if Boombox == nil then
+		Notify('Error: User is not holding boombox.',4); AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; return
+	end
+	if not pcall(function()
+		Remote, Tool = (RArg == 'Boombox' and game:GetService('ReplicatedStorage')['MainEvent'] or Boombox:FindFirstChildOfClass('RemoteEvent')), (RArg == 'Boombox' and LP['Character'].LowerTorso or Boombox)
+		Remote:FireServer(RArg,AssetId)
+	end) then
+		Notify('Error: Boombox is not compatible, check the Settings tab.',7); AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; return
+	end
+	if pcall(function()
+		Playing = game:GetService('MarketplaceService'):GetProductInfo(AntiLog['Asset-Id'].TextBox['Text'])['Name']
+	end) then
+		AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; Notify(('Play: Attempting to play %s under boombox settings: "%s"'):format(Playing, RButton['Name'] or 'Standard'),7)
+	else
+		AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; Notify('Error: Invalid id given.',4)
+	end
+end)
+
+AddFunc('Main',AntiLog['Backpack-Play'].TextButton,function()
+	if not RL then
+		return
+	end
+	if RFE then
+		Notify('Error: RFE is enabled on this game.',4); return
+	end
+	if RArg == 'Boombox' then
+		Notify('Backpack-Play is not functional on Da Hood.',4); return
+	end
+	AntiLog['Asset-Id'].TextBox['TextEditable'] = false
+	local AssetId = Encode(AntiLog['Asset-Id'].TextBox['Text'])
+	if AssetId == nil then
+		AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; return
+	end
+	local Boombox = LP['Character']:FindFirstChildOfClass('Tool')
+	if Boombox == nil then
+		Notify('Error: User is not holding boombox.',4); AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; return
+	end
+	Tool = Boombox;
+	if not pcall(function()
+		Boombox:FindFirstChildOfClass('RemoteEvent'):FireServer(RArg, AssetId)
+		wait(.6)
+		local Selected = nil;
+		repeat
+			local T = Tool:GetDescendants()
+			for I = 1,#T do local V = T[I]
+				if V:IsA('Sound') then
+					if V['Playing'] and V['TimeLength'] ~= 0 and V['IsLoaded'] then
+						Selected = V
+					end
+				end
+			end
+			wait(.06)
+		until Selected
+		Selected['Parent'] = game:GetService('CorePackages')
+		LP['Character']:FindFirstChildOfClass('Humanoid'):UnequipTools()
+		wait(.6)
+		Selected['Parent'] = Tool; Selected:Play()
+		coroutine.wrap(function()
+			Selected['AncestryChanged']:Wait()
+			if Selected then
+				Selected:Stop()
+			end
+		end)()
+	end) then
+		Notify('Error: Boombox is not compatible, check the Settings tab.',7); AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; return
+	end
+	if pcall(function()
+		Playing = game:GetService('MarketplaceService'):GetProductInfo(AntiLog['Asset-Id'].TextBox['Text'])['Name']
+	end) then
+		AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; Notify(('Play: Attempting to backpack-play %s under boombox settings: "%s"'):format(Playing, RButton['Name'] or 'Standard'),7)
+	else
+		AntiLog['Asset-Id'].TextBox['TextEditable'], RL = true, true; Notify('Error: Invalid id given.',4)
+	end
+end)
+
+AddFunc('Main',AntiLog['Copy ID'].TextButton,function()
+	if not RL then
+		return
+	end
+	local AssetId = Encode(AntiLog['Asset-Id'].TextBox['Text'])
+	if AssetId then
+		setclipboard(AssetId); Notify('Successfully copied encoded asset-id to clipboard.',4)
+	end
+	RL = true
+end)
+
+local HDelay = true; C[#C+1] = game:GetService('RunService')['Heartbeat']:Connect(function()
+	if HDelay then
+		HDelay = false
+		if Tool and Tool['Parent'] then
+			local T, Selected = Tool:GetDescendants()
+			for I = 1,#T do local V = T[I]
+				if V:IsA('Sound') then
+					if V['Playing'] and V['TimeLength'] ~= 0 and V['IsLoaded'] then
+						Selected = V
+					end
+				end
+			end
+			if Selected and Playing then
+				if not RFE then
+					AntiLog['Current-Time'].TextEditable = true
+				end
+				Tween(AntiLog['Song-Length'].Mover,.08,'Quad','Out',{Position = UDim2.new(Selected['TimePosition']/Selected['TimeLength'],0,-5,0)})
+				AntiLog['Title'].Text = 'Playing: '..Playing
+				if not AntiLog['Current-Time']:IsFocused() then
+					AntiLog['Current-Time'].Text = ToClock(Selected['TimePosition'])
+				end
+				AntiLog['Total-Time'].Text = ToClock(Selected['TimeLength'])
+			else
+				AntiLog['Current-Time'].TextEditable = false
+				AntiLog['Title'].Text = 'Playing: Nothing'
+				AntiLog['Current-Time'].Text = '0:00'
+				AntiLog['Total-Time'].Text = '0:00'
+				if AntiLog['Song-Length'].Mover['Position'] ~= UDim2.new(0,0,-5,0) then
+					Tween(AntiLog['Song-Length'].Mover,.08,'Quad','Out',{Position = UDim2.new(0,0,-5,0)})
+					wait(.08)
+				end
+			end
+		else
+			AntiLog['Current-Time'].TextEditable = false
+			AntiLog['Title'].Text = 'Playing: Nothing'
+			AntiLog['Current-Time'].Text = '0:00'
+			AntiLog['Total-Time'].Text = '0:00'
+			if AntiLog['Song-Length'].Mover['Position'] ~= UDim2.new(0,0,-5,0) then
+				Tween(AntiLog['Song-Length'].Mover,.08,'Quad','Out',{Position = UDim2.new(0,0,-5,0)})
+				wait(.08)
+			end
+		end
+		HDelay = true
+	end
+end)
+
+AntiLog['Current-Time'].FocusLost:Connect(function(Enter)
+	if Enter and Tool and Tool['Parent'] and not RFE then
+		local T, Selected = Tool:GetDescendants()
+		for I = 1,#T do local V = T[I]
+			if V:IsA('Sound') then
+				if V['Playing'] and V['TimeLength'] ~= 0 and V['IsLoaded'] then
+					Selected = V
+				end
+			end
+		end
+		if Selected and Playing then
+			local Time = AntiLog['Current-Time'].Text
+			if tonumber(Time) then
+				Selected['TimePosition'] = tonumber(Time)
+			elseif Time:match(':') then
+				local Split = Time:split(':')
+				local Mins, Secs = Split[1], Split[2]
+				Selected['TimePosition'] = (tonumber(Mins)*60) + tonumber(Secs)
+			end
+		end
+	end
+end)
+
+local Data, RColor;
+if pcall(function() readfile('Boombox-Hub-Settings.dat') end) then
+	Data = JSONDecode(readfile('Boombox-Hub-Settings.dat'))
+else
+	writefile('Boombox-Hub-Settings.dat', JSONEncode({
+		Type = RButton['Name'] or 'Standard';
+		Mode = RArg;
+		Color = tostring(Default);
+	}))
+	Data = JSONDecode(readfile('Boombox-Hub-Settings.dat'))
+end
+
+if not pcall(function()
+	RButton, RArg, RColor = Sectors['Settings']['Boombox-Type'][Data.Type], Data['Mode'], Color3.new(unpack(Data['Color']:gsub('%s',''):split(',')))
+end) then
+	writefile('Boombox-Hub-Settings.dat', JSONEncode({
+		Type = RButton['Name'] or 'Standard';
+		Mode = RArg;
+		Color = tostring(Default);
+	}))
+	Data = JSONDecode(readfile('Boombox-Hub-Settings.dat'))
+	RButton, RArg, RColor = Sectors['Settings']['Boombox-Type'][Data.Type], Data['Mode'], Color3.new(unpack(Data['Color']:gsub('%s',''):split(',')))
+end
+
+Default = RColor
+
+for K,V in next, CBackground do
+	V['BackgroundColor3'] = Default
+end
+for K,V in next, CImage do
+	V['ImageColor3'] = Default
+end
+for K,V in next, CText do
+	V['TextColor3'] = Default
+end
+for K,V in next, CScroll do
+	V['ScrollBarImageColor3'] = Default
+end
+
+if pcall(function() readfile('Boombox-Hub-Custom-Message.txt') end) then
+	Sectors['Settings']['Custom-Message'].TextBox['Text'] = readfile('Boombox-Hub-Custom-Message.txt')
+end
+
+Tween(RButton['Frame'],.2,'Back','InOut',{ImageColor3 = Color3.fromRGB(22, 24, 27)})
+local T = RButton['Parent']:GetChildren(); for I = 1,#T do local V = T[I]
+	if V ~= RButton and not V:IsA('UIListLayout') and not V:IsA('UIPadding') then
+		Tween(V['Frame'],.2,'Quad','InOut',{ImageColor3 = Color3.fromRGB(33, 37, 41)})
+	end
+end
+
+AddFunc('Types',Sectors['Settings']['Boombox-Type']['Standard'],function()
+	RArg = 'PlaySong'
+	writefile('Boombox-Hub-Settings.dat', JSONEncode({
+		Type = 'Standard';
+		Mode = RArg;
+		Color = tostring(Default);
+	}))
+end)
+
+AddFunc('Types',Sectors['Settings']['Boombox-Type']['The Streets'],function()
+	RArg = 'play'
+	writefile('Boombox-Hub-Settings.dat', JSONEncode({
+		Type = 'The Streets';
+		Mode = RArg;
+		Color = tostring(Default);
+	}))
+end)
+
+AddFunc('Types',Sectors['Settings']['Boombox-Type']['Da Hood'],function()
+	RArg = 'Boombox'
+	writefile('Boombox-Hub-Settings.dat', JSONEncode({
+		Type = 'Da Hood';
+		Mode = RArg;
+		Color = tostring(Default);
+	}))
+end)
+
+AddFunc('Main',Sectors['Settings'].Reset['TextButton'],function()
+	Default = Color3.fromRGB(217,60,56)
+	for K,V in next, CBackground do
+		Tween(V,.3,'Quint','InOut',{BackgroundColor3 = Default})
+	end
+	for K,V in next, CImage do
+		Tween(V,.3,'Quint','InOut',{ImageColor3 = Default})
+	end
+	for K,V in next, CText do
+		Tween(V,.3,'Quint','InOut',{TextColor3 = Default})
+	end
+	for K,V in next, CScroll do
+		Tween(V,.3,'Quint','InOut',{ScrollBarImageColor3 = Default})
+	end
+	writefile('Boombox-Hub-Settings.dat', JSONEncode({
+		Type = RButton['Name'];
+		Mode = RArg;
+		Color = tostring(Default);
+	}))
+end)
+
+G['Sensitivity'], G['TiltSensitivity'], G['OffsetSensitivity'], G['OffsetTiltSensitivity'], G['Speed'], G['MassPlayLimit'] = 65, 90, 5, -20, 1, 8
+
+C[#C+1] = Sectors['Settings']['Color-Picker'].TextBox['FocusLost']:Connect(function(Enter)
+	if Enter then
+		Default = Color3.fromRGB(unpack(Sectors['Settings']['Color-Picker'].TextBox['Text']:gsub('%s',''):split(',')))
+		for K,V in next, CBackground do
+			Tween(V,.3,'Quint','InOut',{BackgroundColor3 = Default})
+		end
+		for K,V in next, CImage do
+			Tween(V,.3,'Quint','InOut',{ImageColor3 = Default})
+		end
+		for K,V in next, CText do
+			Tween(V,.3,'Quint','InOut',{TextColor3 = Default})
+		end
+		for K,V in next, CScroll do
+			Tween(V,.3,'Quint','InOut',{ScrollBarImageColor3 = Default})
+		end
+		writefile('Boombox-Hub-Settings.dat', JSONEncode({
+			Type = RButton['Name'];
+			Mode = RArg;
+			Color = tostring(Default);
+		}))
+	end
+end)
+
+C[#C+1] = Sectors['Settings']['Custom-Message'].TextBox['FocusLost']:Connect(function(Enter)
+	if Enter then
+		writefile('Boombox-Hub-Custom-Message.txt', Sectors['Settings']['Custom-Message'].TextBox['Text'])
+	end
+end)
+
+local PSettings = {
+	Sensitivity = {Scripts['Sensitivity'].TextBox, 65};
+	OffsetSensitivity = {Scripts['Sensitivity-Offset'].TextBox, 5};
+	MassPlayLimit = {Scripts['MassPlay-Amount'].TextBox, 8};
+	TiltSensitivity = {Scripts['TiltSensitivity'].TextBox, 90};
+	OffsetTiltSensitivity = {Scripts['TiltSensitivity-Offset'].TextBox, -20};
+	Speed = {Scripts['Rotation-Speed'].TextBox, 1};
+}
+
+local Numerics = {
+	AntiLog['Asset-Id'].TextBox;
+	Scripts['Asset-Id'].TextBox;
+	Scripts['Dupe-Amount'].TextBox;
+	Scripts['Time-Position'].TextBox;
+}
+
+for K,V in next, Numerics do
+	C[#C+1] = V['Changed']:Connect(function(Property)
+		if Property == 'Text' then
+			V['Text'] = V['Text']:gsub('[^-%.%d+]','')
+		end
+	end)
+end
+
+for K,V in next, PSettings do
+	C[#C+1] = V[1]['Changed']:Connect(function(Property)
+		if Property == 'Text' then
+			V[1]['Text'] = V[1]['Text']:gsub('[^-%.%d+]','')
+		end
+		G[K] = tonumber(V[1]['Text']) or V[2]
+	end)
+end
+
+C[#C+1] = Decoder['Asset-Id'].TextBox.Changed:Connect(function(Property)
+	if Property == 'Text' then
+		if Decoder['Asset-Id'].TextBox.Text:len() > 16383 then
+			Notify('Asset-Id exceeded maximum TextBox length, create a file in your workspace folder and type the file\'s path into the TextBox and use Decode File instead.',10)
+		end
+	end
+end)
+
+local Minimized, SLocation = false
+
+local MToggle = function()
+	Minimized = not Minimized
+	if Minimized then
+		SLocation = Main['Position']
+	end
+	Tween(Main,.4,'Quad','InOut',{Position = Minimized and Origin or SLocation})
+	Control['Minimize'].Text = Minimized and '+' or '-'
+end
+
+local Exit = function()
+	for I = 1,#C do local V = C[I]
+		V:Disconnect()
+	end
+	NK = nil
+	UI:Destroy(); Notification:Destroy(); Template:Destroy(); Push:Destroy()
+end
+
+local Prefix = ';'
+
+local LP = game:GetService('Players')['LocalPlayer']
+
+local GPlayer = function(Name)
+	Name = Name:lower()
+	local Matches = {};
+	for I = #Name,1,-1 do 
+		for K,V in next, game:GetService('Players'):GetPlayers() do 
+			if rawequal(Name,V['Name']:lower():sub(1,I)) then 
+				table.insert(Matches,V)
+			end
+		end
+	end
+	if #Matches > 0 then 
+		return Matches[1]
+	else
+		for K,V in next, game:GetService('Players'):GetPlayers() do 
+			if V['Name']:lower():find(Name) then 
+				return V
+			end
+		end
+	end
+end
+
+local PPlayer, PChar;
+
+local SetTargetInfo = function(Name)
+	PPlayer = GPlayer(Name); PChar = PPlayer['Character']
+end
+
+local Commands, CommandsInfo = {}, {}
+
+local AddCommand = function(Name, Info, Func)
+	Commands[Name] = Func
+	CommandsInfo[Name] = Info
+end
+
+AddCommand('massplay', 'Mass plays all your radios through your character.', function(...)
+	local Args, ID = {...}, nil; ID = Args[1]
+	if not RL then
+		return
+	end
+	if RFE then
+		Notify('Error: RFE is enabled on this game.',4); return
+	end
+	local AssetId = Encode(ID)
+	if AssetId == nil then
+		RL = true; return
+	end
+	LP['Character'].Humanoid:UnequipTools()
+	local FoundRadios = {}; (function()
+		local Tools = LP['Backpack']:GetChildren()
+		for _, Tool in next, Tools do
+			if string.find(Tool.Name:lower(), 'boombox') then
+				table.insert(FoundRadios, Tool)
+				Tool['Parent'] = LP['Character']
+			end
+		end
+	end)();
+	if #FoundRadios < 1 then
+		Notify('Error: User doesn\'t have a boombox.'); RL = true; return
+	end
+	local Tool = FoundRadios[1]
+	if not pcall(function()
+		for _, Boombox in next, FoundRadios do
+			Boombox:FindFirstChildOfClass('RemoteEvent'):FireServer(RArg, AssetId)
+		end
+		local Selected = nil
+		repeat
+			local T = Tool:GetDescendants()
+			for I = 1,#T do local V = T[I]
+				if V:IsA('Sound') then
+					if V['Playing'] and V['TimeLength'] ~= 0 and V['IsLoaded'] then
+						Selected = V
+					end
+				end
+			end
+			wait(.06)
+		until Selected
+		local Time = Selected.TimePosition
+		for K,V in next, LP['Character']:GetDescendants() do
+			if V:IsA('Sound') then
+				V['TimePosition'] = math.round(Time) - .5
+			end
+		end
+	end) then
+		Notify('Error: Boombox is not compatible, check the Settings tab.',7); RL = true; return
+	end
+	if pcall(function()
+		Playing = game:GetService('MarketplaceService'):GetProductInfo(ID)['Name']
+	end) then
+		RL = true; Notify(('Play: Attempting to massplay-play %s under boombox settings: "%s"'):format(Playing, RButton['Name'] or 'Standard'),7)
+	else
+		RL = true; Notify('Error: Invalid id given.',4)
+	end
+end)
+
+AddCommand('follow', 'Takes parameter <Shortenable Name>, makes your visualizer follow the specified player. If no name given, follows self again.', function(Name)
+	Name = Name or LP['Name']
+	if not LP['Character'] then
+		return;
+	end
+	SetTargetInfo(Name)
+	local SChar = PChar
+	local NRoot = SChar:FindFirstChild('HumanoidRootPart') or SChar:FindFirstChild('Torso') or SChar:FindFirstChild('UpperTorso') or LP['Character']:FindFirstChild('HumanoidRootPart') or LP['Character']:FindFirstChild('Torso') or LP['Character']:FindFirstChild('UpperTorso')
+	if NRoot then
+		G['Root'] = NRoot
+	end
+end)
+
+AddCommand('input','Takes parameter <Text>, is used for certain presets.',function(...)
+	local TBL={...}local Table = Request({
+		Url='https://riptxde.dev/index.php';
+		Method='GET';
+	})['Body']
+	if Table ~= '{CFrame.new()}' then
+		return 'Incompatible Exploit'
+	end
+	G['Input']=table.concat(TBL,' ')
+end)
+
+AddCommand('canceldupe', 'Stops duping tools and re-grabs them after respawning.', function()
+	CancelDupe = true
+end)
+
+AddCommand('experimentalmode', 'Allows the visualizer to error, making it easier while creating presets.', function()
+	G['ExperimentalMode'] = true
+end)
+
+AddCommand('nodefault', 'Disables the annoying black gui when you click with the default boomboxes.', function()
+	if not (LP['Character'] and LP['Character']:FindFirstChildOfClass('Humanoid')) then
+		return;
+	end
+	LP['Character']:FindFirstChildOfClass('Humanoid'):UnequipTools()
+	for K,V in next, LP['Backpack']:GetChildren() do
+		if V:IsA('Tool') then
+			if V:FindFirstChild('Client') then
+				V['Client'].Disabled = true
+			end
+		end
+	end
+end)
+
+AddCommand('demesh', 'Unequips all tools and removes their meshes.', function()
+	if not LP['Character'] then
+		return;
+	end
+	for K,V in next, LP['Backpack']:GetChildren() do
+		if V:IsA('Tool') then
+			V['Parent'] = LP['Character']
+		end
+	end
+	game:GetService('RunService')['Heartbeat']:Wait()
+	for A,B in next, LP['Character']:GetChildren() do
+		if B:IsA('Tool') then
+			for C,D in next, B:GetDescendants() do
+				if D:IsA('Mesh') or D:IsA('SpecialMesh') then
+					D:Destroy()
+				end
+			end
+		end
+	end
+end)
+
+AddCommand('deletetool', 'Deletes all tools with the same name as the one you are holding.', function()
+	if not (LP['Character'] and LP['Character']:FindFirstChildOfClass('Tool') and LP['Character']:FindFirstChildOfClass('Humanoid')) then
+		Notify('Error: You must be holding the tool you want to delete.',4)
+		return;
+	end
+	local Name = LP['Character']:FindFirstChildOfClass('Tool')['Name']
+	LP['Character']:FindFirstChildOfClass('Humanoid'):UnequipTools()
+	for K,V in next, LP['Backpack']:GetChildren() do
+		if V:IsA('Tool') and V['Name'] == Name then
+			V:Destroy()
+		end
+	end
+end)
+
+AddCommand('sync', 'Takes parameter <Seconds>, Syncs all boomboxes to time in seconds. If time not given, syncs to the time of one of your playing boomboxes.', function(Time)
+	if not RFE then
+		if not LP['Character'] then
+			return;
+		end
+		for K,V in next, LP['Character']:GetDescendants() do
+			if V:IsA('Sound') and V.IsLoaded and V['Playing'] then
+				if V['Parent'] and V['Parent'].Name == 'HumanoidRootPart' then
+					continue;
+				end
+				if not Time then
+					Time = V['TimePosition']
+				end
+				break;
+			end
+		end
+		for K,V in next, LP['Character']:GetDescendants() do
+			if V:IsA('Sound') then
+				V['TimePosition'] = math.round(Time) - .5
+			end
+		end
+	else
+		Notify('Error: RFE is enabled on this game.',4)
+	end
+end)
+
+AddCommand('unimport', 'Takes parameter <Preset Name>, removes specified preset.', function(PresetName)
+	PresetName = (PresetName or ''):gsub('.preset',''):lower()
+	if PresetName == 'circle' or PresetName == 'line' then
+		Notify('Error: That preset cannot be deleted!',6)
+		return;
+	end
+	if not pcall(function()
+		local TPreset = JSONDecode(readfile('Boombox-Hub-Presets.dat'))
+		assert(TPreset[PresetName])
+		TPreset[PresetName] = nil
+		Presets[PresetName] = nil
+		local Button = Scripts['Preset']:FindFirstChild(PresetName)
+		if Button then
+			if type(getconnections) == 'function' then
+				local T = getconnections(Button['MouseButton1Click']); for I = 1,#T do local V = T[I]
+					V:Disable()
+				end
+			end
+			coroutine.wrap(function()
+				Tween(Button,.2,'Quad','Out',{TextTransparency = 1})
+				Tween(Button['Frame'],.2,'Quad','Out',{ImageTransparency = 1})
+				wait(.2)
+				Button:Destroy()
+			end)()
+			Tween(Scripts['Preset'],.2,'Quad','InOut',{CanvasSize = UDim2.new(0,0,0,Scripts['Preset'].UIListLayout['AbsoluteContentSize'].Y * 2)})
+		end
+		writefile('Boombox-Hub-Presets.dat', JSONEncode(TPreset))
+		CPreset = Presets['circle']
+		for K,V in next, Scripts['Preset']:GetChildren() do
+			if not (V:IsA('UIListLayout') or V:IsA('UIPadding')) then
+				Tween(V['Frame'],.2,'Quad','Out',{ImageColor3 = PTemplate['Frame'].ImageColor3})
+			end
+		end
+		Notify(('Successfully removed preset "%s".'):format(PresetName),6)
+		wait(.4)
+	end) then
+		Notify(('Error: Could not find a preset named "%s".'):format(PresetName),6)
+	end
+end)
+
+AddCommand('import', 'Takes parameter <Preset File Name>, imports specified preset file. See #visualizer-info for more instructions.', function(FileName)
+	local File;
+	if not pcall(function()
+		if not pcall(function() File = readfile(FileName) end) then
+			File = readfile(FileName..'.preset')
+		end
+		assert(File ~= nil)
+		FileName = FileName:gsub('%.preset','')
+	end) then
+		Notify('Error: Preset file not found in Synapse X/workspace.',4)
+		return
+	end
+	if FileName == 'circle' or FileName == 'line' then
+		Notify('Error: That preset cannot be overwritten!',6)
+		return;
+	end
+	if Scripts['Preset']:FindFirstChild(FileName) then
+		Commands.unimport(FileName)
+	end
+	local TPreset = JSONDecode(readfile('Boombox-Hub-Presets.dat'))
+	TPreset[FileName] = File
+	writefile('Boombox-Hub-Presets.dat', JSONEncode(TPreset))
+	Presets[FileName] = File
+	local Clone = PTemplate:Clone()
+	Clone['Text'] = FileName
+	Clone['Name'] = FileName
+	AddFunc('Presets',Clone,function()
+		CPreset = File
+	end)
+	Clone['TextTransparency'] = 1
+	Clone['Frame'].ImageTransparency = 1
+	Clone['Parent'] = Scripts['Preset']
+	Tween(Clone,.2,'Quad','Out',{TextTransparency = 0})
+	Tween(Clone['Frame'],.2,'Quad','Out',{ImageTransparency = 0})
+	Tween(Scripts['Preset'],.2,'Quad','InOut',{CanvasSize = UDim2.new(0,0,0,Scripts['Preset'].UIListLayout['AbsoluteContentSize'].Y * 2)})
+	CPreset = Presets['circle']
+	for K,V in next, Scripts['Preset']:GetChildren() do
+		if not (V:IsA('UIListLayout') or V:IsA('UIPadding')) then
+			Tween(V['Frame'],.2,'Quad','Out',{ImageColor3 = PTemplate['Frame'].ImageColor3})
+		end
+	end
+	Notify(('Successfully imported preset "%s".'):format(FileName),6)
+end)
+
+AddCommand('log', 'Takes parameter <Shortenable Name>, copies the asset-id of an audio that the specified player is playing.', function(Name)
+	SetTargetInfo(Name)
+	local SPlayer, SChar = PPlayer, PChar
+	if SChar then
+		local Sounds, Boombox = {};
+		for A,B in next, SChar:GetChildren() do
+			if B['Name']:lower():find('boombox') or B['Name']:lower():find('radio') then
+				for C,D in next, B:GetDescendants() do
+					if D:IsA('Sound') then
+						if D['Playing'] ~= false and D['IsLoaded'] ~= false then
+							Boombox = B; Sounds[#Sounds+1] = D; break
+						end
+					end
+				end
+			end
+		end
+		if Boombox == nil then
+			for A,B in next, SPlayer['Backpack']:GetChildren() do
+				if B['Name']:lower():find('boombox') or B['Name']:lower():find('radio') then
+					for C,D in next, B:GetDescendants() do
+						if D:IsA('Sound') then
+							if D['Playing'] ~= false and D['IsLoaded'] ~= false then
+								Boombox = B; Sounds[#Sounds+1] = D; break
+							end
+						end
+					end
+				end
+			end
+		end
+		if #Sounds < 1 then
+			Notify('Error: Could not find '..SPlayer['Name']..'\'s boombox.',4); return
+		end
+		local Sound = {nil,-1};
+		for K,V in next, Sounds do
+			if V['PlaybackLoudness'] > Sound[2] then
+				Sound[1] = V; Sound[2] = V['PlaybackLoudness']
+			end
+		end
+		setclipboard(Sound[1].SoundId); Notify('Successfully logged '..SPlayer['Name']..'\'s boombox.',4)
+	end
+end)
+
+AddCommand('mute', 'Takes parameter <Shortenable Name>, mutes audio of specified player.', function(Name)
+	if not RFE then
+		SetTargetInfo(Name)
+		local SChar = PChar
+		for K,V in next, SChar:GetDescendants() do
+			if V:IsA('Sound') then
+				V:Stop()
+			end
+		end
+	else
+		Notify('Error: RFE is enabled on this game.',4)
+	end
+end)
+
+AddCommand('muteall', 'Mutes all players.', function()
+	if not RFE then
+		for A,B in next, game:GetService('Players'):GetPlayers() do
+			if B ~= LP then
+				local BChar = B['Character']
+				if BChar then
+					for C,D in next, BChar:GetDescendants() do
+						if D:IsA('Sound') then
+							D:Stop()
+						end
+					end
+				end
+			end
+		end
+	else
+		Notify('Error: RFE is enabled on this game.',4)
+	end
+end)
+
+local Muted = {};
+
+AddCommand('loopmute', 'Takes parameter <Shortenable Name>, constantly mutes audio of specified player.', function(Name)
+	if not RFE then
+		SetTargetInfo(Name)
+		local Selected = PPlayer
+		table.insert(Muted,Selected)
+		repeat
+			coroutine.wrap(function()
+				Commands.mute(Selected['Name'])
+			end)()
+			wait(.08)
+		until not table.find(Muted,Selected)
+	else
+		Notify('Error: RFE is enabled on this game.',4)
+	end
+end)
+
+AddCommand('unloopmute', 'Takes parameter <Shortenable Name>, stops constantly muting audio of specified player.', function(Name)
+	SetTargetInfo(Name)
+	local Selected = PPlayer
+	for K,V in next, Muted do
+		if V == Selected then
+			Muted[K] = nil
+		end
+	end
+end)
+
+local Looping = false
+
+AddCommand('loopmuteall', 'Constantly mutes all players.', function()
+	Looping = true
+	coroutine.resume(coroutine.create(function()
+		repeat
+			Commands.muteall()
+			wait(.08)
+		until Looping == false
+	end))
+end)
+
+AddCommand('unloopmuteall', 'Stops constantly muting all players.', function()
+	Looping = false
+end)
+
+AddCommand('verify', 'Takes parameter <Code>, Lets you verify via email to use the paid features on a different IP. See #my-ip-changed for more information.', function(Code)
+	local Response = Request({
+		Url = 'https://riptxde.dev/auth.php/?verification-code='..Code..'&lp='..LP['Name'];
+		Method = 'GET';
+	})['Body']
+	Notify(Response,10);
+end)
+
+local CommandsContainer = Main['Commands']
+local CommandsList = CommandsContainer['Commands-List']
+local CTemplate = CommandsList['Command']; CTemplate['Parent'] = game:GetService('CorePackages')
+
+for K,V in next, CommandsInfo do
+	local Clone = CTemplate:Clone()
+	Clone['Text'] = Prefix..K
+	AddFunc('Commands', Clone, function()
+		Notify(V, 6)
+	end)
+	Clone['Name'] = K
+	Clone['Parent'] = CommandsList
+end
+
+local Parse = function(Msg)
+	if Msg:sub(1,1) ~= Prefix then
+		Msg = Prefix..Msg
+	end
+	Msg = Msg:lower()
+	if Msg:match('^'..Prefix) then 
+		local Args = {}; for V in Msg:gmatch('[^%s]+') do
+			table.insert(Args,V)
+		end
+		local Func = Commands[Args[1]:gsub(Prefix,'',1)]; table.remove(Args,1)
+		if Func then
+			coroutine.wrap(function()
+				Func(table.unpack(Args))
+			end)()
+		end
+	end
+end
+
+C[#C+1] = Control['Close'].MouseButton1Click:Connect(Exit)
+
+C[#C+1] = Control['Minimize'].MouseButton1Click:Connect(MToggle)
+
+C[#C+1] = Menu['Command-Bar'].TextBox['FocusLost']:Connect(function(Enter)
+	if Enter then
+		Parse(Menu['Command-Bar'].TextBox['Text'])
+		pcall(function()
+			Menu['Command-Bar'].TextBox['Text'] = ''
+		end)
+	end
+end)
+   end,
+})
+
+local Section = GUITab:CreateSection("Salmon's Hub")
+
+local Button = GUITab:CreateButton({
+   Name = "Salmon's Hub GUI (Press Once)",
+   Callback = function()
+        --SalmonHub Made by Salmon#3917
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Salmon's Boombox GUI!")
+
+
+wait(1.2)
+game.StarterGui:SetCore("SendNotification", {
+Title = "Script loaded"; 
+Text = "Made by Salmon#3917"; 
+Duration = 5; 
+})
+
+
+--_______________________________________________________________________________________________
+
+local Tab = Window:NewTab("Boombox Duper")
+
+
+local Section = Tab:NewSection("Boombox duper")
+
+Section:NewTextBox("in void dupe", "", function(xd)
+
+    
+    local amount = xd
+        
+    local plr = game:GetService("Players").LocalPlayer
+    local character = plr.Character
+    
+    local ogpos = character.HumanoidRootPart.Position
+    
+    for i = 1, amount do
+       character:WaitForChild("HumanoidRootPart")
+       for i,v in pairs(plr.Backpack:GetChildren()) do
+           if v:IsA("Tool") then v.Parent = character end
+       end
+       for i,v in pairs(character:GetChildren()) do
+           if v:IsA("Tool") then v.Parent = character end
+       end
+       character.HumanoidRootPart.CFrame = CFrame.new(0,9999999999,0)
+       repeat wait() until not plr.Backpack:FindFirstChildOfClass("Tool")
+       wait(0.75)
+       for i,v in pairs(character:GetChildren()) do
+           if v:IsA("BasePart") then
+               v.CanCollide = false
+               v.Anchored = true
+           end
+       end
+       for i,v in pairs(character:GetChildren()) do
+           if v:IsA("Tool") then v.Parent = workspace end
+       end
+       character:BreakJoints()
+       plr.CharacterAdded:Wait()
+       character = plr.Character
+    end
+    
+    character:WaitForChild('HumanoidRootPart')
+    wait(0.15)
+    character.HumanoidRootPart.CFrame = CFrame.new(ogpos)
+    for i,v in pairs(workspace:GetChildren()) do
+       if v:IsA("Tool") then
+           character.Humanoid:EquipTool(v)    
+       end
+    end
+    end)
+    
+    Section:NewTextBox("In house dupe", "", function(ff)
+    
+    local amount = ff
+        
+    local plr = game:GetService("Players").LocalPlayer
+    local character = plr.Character
+    
+    
+        
+    local ogpos = character.HumanoidRootPart.Position
+    
+    for i = 1, amount do
+       character:WaitForChild("HumanoidRootPart")
+       for i,v in pairs(plr.Backpack:GetChildren()) do
+           if v:IsA("Tool") then v.Parent = character end
+       end
+       for i,v in pairs(character:GetChildren()) do
+           if v:IsA("Tool") then v.Parent = character end
+       end
+       character.HumanoidRootPart.CFrame = CFrame.new(5614.46484375, 52.155479431152344, -17237.150390625)
+       repeat wait() until not plr.Backpack:FindFirstChildOfClass("Tool")
+       wait(0.25)
+       for i,v in pairs(character:GetChildren()) do
+           if v:IsA("BasePart") then
+               v.CanCollide = false
+               v.Anchored = true
+           end
+       end
+       for i,v in pairs(character:GetChildren()) do
+           if v:IsA("Tool") then v.Parent = workspace end
+       end8:16 PM 3/28/2025
+       character:BreakJoints()
+       plr.CharacterAdded:Wait()
+       character = plr.Character
+    end
+    
+    character:WaitForChild('HumanoidRootPart')
+    wait(0.15)
+    character.HumanoidRootPart.CFrame = CFrame.new(ogpos)
+    for i,v in pairs(workspace:GetChildren()) do
+       if v:IsA("Tool") then
+           character.Humanoid:EquipTool(v)    
+       end
+       end
+    end)
+
+
+--_______________________________________________________________________________________________
+
+local Tab = Window:NewTab("Visuals")
+
+local Section = Tab:NewSection("BoomBox Visuals")
+
+-- shitty color selector that somehow works
+Section:NewColorPicker("Color Selector", "changes colors", Color3.fromRGB(0,0,0), function(color)
+
+    local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    if v:IsA("Tool") and v.Name == "BoomBox" then
+      v.Handle.Color = color
+      v.Parent = game.Players.LocalPlayer.Character
+    end
+end
+
+end)
+
+
+-- FORCEFIELD BOOMBOX
+Section:NewButton("Forcefield BoomBox", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+
+for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    if v:IsA("Tool") and v.Name == "BoomBox" then
+      v.Handle.Material = "ForceField"
+    end
+end
+end)
+
+Section:NewButton("Delete Mesh", "", function()
+local plr = game.Players.LocalPlayer
+
+for _, x in pairs(plr.Backpack:GetChildren()) do
+if x.Name == "BoomBox" then
+if x.Handle:FindFirstChild("Mesh") then
+x.Parent = plr.Character
+x.Handle.Mesh:Destroy()
+end
+end
+end
+end)
+
+
+
+local Section = Tab:NewSection("Map Visuals")
+Section:NewButton("Low GFX", "", function()
+
+    local Material = "SmoothPlastic"
+
+    for i,v in next, workspace:GetDescendants() do
+        if v:IsA("BasePart") then
+            v.Material = Material
+        end
+    end
+
+end)
+
+
+
+
+
+-- taco, dont ask why its here.
+-- 142376088
+--_______________________________________________________________________________________________
+local Tab = Window:NewTab("Boombox builds")
+
+
+local Section = Tab:NewSection("Boombox builds (not skidded)")
+
+
+
+Section:NewButton("Hidden Boombox (1)", "", function()
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1.5, 0, -8) * CFrame.Angles(0, math.rad(180), 0)
+Tools[1].Parent = plr.Character
+
+
+local hum = game.Players.LocalPlayer.Character.Humanoid
+for _,x in next, hum:GetPlayingAnimationTracks() do
+   if x.Animation then
+    x:Stop()
+    end
+end
+end)
+
+Section:NewButton("Boombox Back (1-10)", "", function()
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(-1, 1, 2.3) * CFrame.Angles(0, math.rad(180), 0.65)
+Tools[10].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Penis (3)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1, 0.3, -1.3) * CFrame.Angles(1.6, math.rad(0), 3.16)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(-2, 0.3, -1.3) * CFrame.Angles(1.6, math.rad(0), 3.16)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(1.5, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[3].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Big Penis (4)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1, 0.3, -1.3) * CFrame.Angles(1.6, math.rad(0), 3.16)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(-2, 0.3, -1.3) * CFrame.Angles(1.6, math.rad(0), 3.16)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(1.5, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(4, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[4].Parent = plr.Character
+
+end) 
+
+--_______________________________________________________________________________________________
+
+
+Section:NewButton("HUGE PENIS (why did i make this)(10)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1, 0.3, -1.3) * CFrame.Angles(1.6, math.rad(0), 3.16)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(-2, 0.3, -1.3) * CFrame.Angles(1.6, math.rad(0), 3.16)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(1.5, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(4, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(6.5, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(9, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(11.5, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(14, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(16.5, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(16.5, -1.5, -1.3) * CFrame.Angles(1.6, math.rad(90), 3.16)
+Tools[10].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+
+Section:NewButton("Schizo Cage (33)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(0, 1.2, 0) * CFrame.Angles(0, math.rad(0), 0)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(0, 2.6, 0) * CFrame.Angles(0, math.rad(0), 0)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(0, -0.2, 0) * CFrame.Angles(0, math.rad(0), 0)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(-1.6, -1.6, -0.6) * CFrame.Angles(0, math.rad(-45), 0)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(0, -3, 0) * CFrame.Angles(0, math.rad(0), 0)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(2.6, 1.2, 0) * CFrame.Angles(0, math.rad(0), 0)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(2.6, 2.6, 0) * CFrame.Angles(0, math.rad(0), 0)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(2.6, -0.2, 0) * CFrame.Angles(0, math.rad(0), 0)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(3.6, -1.6, -2.6) * CFrame.Angles(0, math.rad(45), 0)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(2.6, -3, 0) * CFrame.Angles(0, math.rad(0), 0)
+Tools[10].Parent = plr.Character
+
+Tools[11].Grip = CFrame.new(0, 1.2, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[11].Parent = plr.Character
+
+Tools[12].Grip = CFrame.new(0, 2.6, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[12].Parent = plr.Character
+
+Tools[13].Grip = CFrame.new(0, -0.2, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[13].Parent = plr.Character
+
+Tools[14].Grip = CFrame.new(0, -1.6, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[14].Parent = plr.Character
+
+Tools[15].Grip = CFrame.new(0, -3, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[15].Parent = plr.Character
+
+Tools[16].Grip = CFrame.new(-2.6, 1.2, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[16].Parent = plr.Character
+
+Tools[17].Grip = CFrame.new(-2.6, 2.6, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[17].Parent = plr.Character
+
+Tools[18].Grip = CFrame.new(-2.6, -0.2, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[18].Parent = plr.Character
+
+Tools[19].Grip = CFrame.new(-2.6, -1.6, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[19].Parent = plr.Character
+
+Tools[20].Grip = CFrame.new(-2.6, -3, 3) * CFrame.Angles(0, math.rad(180), 0)
+Tools[20].Parent = plr.Character
+
+Tools[21].Grip = CFrame.new(-1.5, -3, 1.2) * CFrame.Angles(0, math.rad(90), 0)
+Tools[21].Parent = plr.Character
+
+Tools[22].Grip = CFrame.new(-1.5, 1.2, 1.2) * CFrame.Angles(0, math.rad(90), 0)
+Tools[22].Parent = plr.Character
+
+Tools[23].Grip = CFrame.new(-1.5, 2.6, 1.2) * CFrame.Angles(0, math.rad(90), 0)
+Tools[23].Parent = plr.Character
+
+Tools[24].Grip = CFrame.new(-1.5, -0.2, 1.2) * CFrame.Angles(0, math.rad(90), 0)
+Tools[24].Parent = plr.Character
+
+Tools[25].Grip = CFrame.new(-1.5, -1.6, 1.2) * CFrame.Angles(0, math.rad(90), 0)
+Tools[25].Parent = plr.Character
+
+Tools[26].Grip = CFrame.new(1.5, -3, 3.8) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[26].Parent = plr.Character
+
+Tools[27].Grip = CFrame.new(1.5, -1.6, 3.8) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[27].Parent = plr.Character
+
+Tools[28].Grip = CFrame.new(1.5, -0.2, 3.8) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[28].Parent = plr.Character
+
+Tools[29].Grip = CFrame.new(1.5, 1.2, 3.8) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[29].Parent = plr.Character
+
+Tools[30].Grip = CFrame.new(1.5, 2.6, 3.8) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[30].Parent = plr.Character
+
+Tools[31].Grip = CFrame.new(-1.5, 0.1, 3.4) * CFrame.Angles(4.71, math.rad(90), 0)
+Tools[31].Parent = plr.Character
+
+Tools[32].Grip = CFrame.new(-1.5, -1.4, 3.4) * CFrame.Angles(4.71, math.rad(90), 0)
+Tools[32].Parent = plr.Character
+
+Tools[33].Grip = CFrame.new(-1.5, -2.9, 3.4) * CFrame.Angles(4.71, math.rad(90), 0)
+Tools[33].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Really bad headphones (5)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1.5, -1.3, -2.4) * CFrame.Angles(0, math.rad(90), 0)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(1.5, -1.3, 2.5) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-1.5, -1.3, -0.5) * CFrame.Angles(0, math.rad(90), 0)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(1.5, -1.3, 0.6) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(1.5, -1.8, -1.6) * CFrame.Angles(0, math.rad(0), 0)
+Tools[5].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("QBZ 95 (45)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(0, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(0.4, 0, 0) * CFrame.Angles(-1.58, math.rad(160), -1.5)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(2.6, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(5.4, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-1, 2, 0) * CFrame.Angles(-1.58, math.rad(160), -1.5)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(-3.6, 2, 0) * CFrame.Angles(-1.58, math.rad(160), -1.5)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(-2.7, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(-5.4, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(0.2, -2, 0) * CFrame.Angles(-1.58, math.rad(160), -1.5)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(-5.4, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[10].Parent = plr.Character
+
+Tools[11].Grip = CFrame.new(-2.7, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[11].Parent = plr.Character
+
+Tools[12].Grip = CFrame.new(2.6, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[12].Parent = plr.Character
+
+Tools[13].Grip = CFrame.new(-0, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[13].Parent = plr.Character
+
+Tools[14].Grip = CFrame.new(5.4, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[14].Parent = plr.Character
+
+Tools[15].Grip = CFrame.new(0.4, 7, 0) * CFrame.Angles(-1.58, math.rad(190), -1.5)
+Tools[15].Parent = plr.Character
+
+Tools[16].Grip = CFrame.new(-1.7, 7, 0) * CFrame.Angles(-1.58, math.rad(195), -1.5)
+Tools[16].Parent = plr.Character
+
+Tools[17].Grip = CFrame.new(0.5, 8.3, 0) * CFrame.Angles(-1.58, math.rad(190), -1.5)
+Tools[17].Parent = plr.Character
+
+Tools[18].Grip = CFrame.new(-1.5, 8.3, 0) * CFrame.Angles(-1.58, math.rad(195), -1.5)
+Tools[18].Parent = plr.Character
+
+Tools[19].Grip = CFrame.new(8, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[19].Parent = plr.Character
+
+Tools[20].Grip = CFrame.new(-2.8, 9, 0) * CFrame.Angles(-1.58, math.rad(160), -1.5)
+Tools[20].Parent = plr.Character
+
+Tools[21].Grip = CFrame.new(10.9, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[21].Parent = plr.Character
+
+Tools[22].Grip = CFrame.new(-3.6, 12, 0) * CFrame.Angles(-1.58, math.rad(160), -1.5)
+Tools[22].Parent = plr.Character
+
+Tools[23].Grip = CFrame.new(13.6, -1.7, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[23].Parent = plr.Character
+
+Tools[24].Grip = CFrame.new(13.8, -0.4, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[24].Parent = plr.Character
+
+Tools[25].Grip = CFrame.new(12.6, -3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[25].Parent = plr.Character
+
+Tools[26].Grip = CFrame.new(14.3, -1.7, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[26].Parent = plr.Character
+
+Tools[27].Grip = CFrame.new(14.4, -0.4, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[27].Parent = plr.Character
+
+Tools[28].Grip = CFrame.new(14.3, -3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[28].Parent = plr.Character
+
+Tools[29].Grip = CFrame.new(8, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[29].Parent = plr.Character
+
+Tools[30].Grip = CFrame.new(10.6, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[30].Parent = plr.Character
+
+Tools[31].Grip = CFrame.new(-8, -2, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[31].Parent = plr.Character
+
+Tools[32].Grip = CFrame.new(-6, -1, 1) * CFrame.Angles(-0.5, math.rad(-90), 0)
+Tools[32].Parent = plr.Character
+
+Tools[33].Grip = CFrame.new(6, -1, 1) * CFrame.Angles(-0.5, math.rad(90), 0)
+Tools[33].Parent = plr.Character
+
+Tools[34].Grip = CFrame.new(-9.6, -2, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[34].Parent = plr.Character
+
+Tools[35].Grip = CFrame.new(-12, -2, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[35].Parent = plr.Character
+
+Tools[36].Grip = CFrame.new(1.5, 6.5, 0) * CFrame.Angles(-1.6, math.rad(160), -1.5)
+Tools[36].Parent = plr.Character
+
+Tools[37].Grip = CFrame.new(4.4, 4.5, 0) * CFrame.Angles(-1.6, math.rad(180), -1.5)
+Tools[37].Parent = plr.Character
+
+Tools[38].Grip = CFrame.new(2.4, 6.5, 0) * CFrame.Angles(-1.6, math.rad(160), -1.5)
+Tools[38].Parent = plr.Character
+
+Tools[39].Grip = CFrame.new(3.4, -5.6, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[39].Parent = plr.Character
+
+Tools[40].Grip = CFrame.new(0.8, -5.6, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[40].Parent = plr.Character
+
+Tools[41].Grip = CFrame.new(2.5, -3.5, 0) * CFrame.Angles(-1.65, math.rad(200), -1.6)
+Tools[41].Parent = plr.Character
+
+Tools[42].Grip = CFrame.new(3.6, -3.5, 0) * CFrame.Angles(-1.65, math.rad(200), -1.6)
+Tools[42].Parent = plr.Character
+
+Tools[43].Grip = CFrame.new(-0.3, -5.6, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[43].Parent = plr.Character
+
+
+Tools[44].Grip = CFrame.new(4.4, -6.3, 0) * CFrame.Angles(-1.55, math.rad(180), -1.5)
+Tools[44].Parent = plr.Character
+
+Tools[45].Grip = CFrame.new(5.9, -3.9, 0) * CFrame.Angles(-1.55, math.rad(160), -1.5)
+Tools[45].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("boombox stack (1-100)", "", function()
+
+    local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+    local Tools = plr.Backpack:GetChildren()
+    
+    Tools[1].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[1].Parent = plr.Character
+    
+    Tools[2].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[2].Parent = plr.Character
+    
+    Tools[3].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[3].Parent = plr.Character
+    
+    Tools[4].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[4].Parent = plr.Character
+    
+    Tools[5].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[5].Parent = plr.Character
+    
+    Tools[6].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[6].Parent = plr.Character
+    
+    Tools[7].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[7].Parent = plr.Character
+    
+    Tools[8].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[8].Parent = plr.Character
+    
+    Tools[9].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[9].Parent = plr.Character
+    
+    Tools[10].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[10].Parent = plr.Character
+    
+    Tools[11].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[11].Parent = plr.Character
+    
+    Tools[12].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[12].Parent = plr.Character
+    
+    Tools[13].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[13].Parent = plr.Character
+    
+    Tools[14].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[14].Parent = plr.Character
+    
+    Tools[15].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[15].Parent = plr.Character
+    
+    Tools[16].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[16].Parent = plr.Character
+    
+    Tools[17].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[17].Parent = plr.Character
+    
+    Tools[18].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[18].Parent = plr.Character
+    
+    Tools[19].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[19].Parent = plr.Character
+    
+    Tools[20].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[20].Parent = plr.Character
+    
+    Tools[21].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[21].Parent = plr.Character
+    
+    Tools[22].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[22].Parent = plr.Character
+    
+    Tools[23].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[23].Parent = plr.Character
+    
+    Tools[24].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[24].Parent = plr.Character
+    
+    Tools[25].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[25].Parent = plr.Character
+    
+    Tools[26].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[26].Parent = plr.Character
+    
+    Tools[27].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[27].Parent = plr.Character
+    
+    Tools[28].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[28].Parent = plr.Character
+    
+    Tools[29].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[29].Parent = plr.Character
+    
+    Tools[30].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[30].Parent = plr.Character
+    
+    Tools[31].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[31].Parent = plr.Character
+    
+    Tools[32].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[32].Parent = plr.Character
+    
+    Tools[33].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[33].Parent = plr.Character
+    
+    Tools[34].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[34].Parent = plr.Character
+    
+    Tools[35].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[35].Parent = plr.Character
+    
+    Tools[36].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[36].Parent = plr.Character
+    
+    Tools[37].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[37].Parent = plr.Character
+    
+    Tools[38].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[38].Parent = plr.Character
+    
+    Tools[39].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[39].Parent = plr.Character
+    
+    Tools[40].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[40].Parent = plr.Character
+    
+    Tools[41].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[41].Parent = plr.Character
+    
+    Tools[42].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[42].Parent = plr.Character
+    
+    Tools[43].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[43].Parent = plr.Character
+    
+    Tools[44].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[44].Parent = plr.Character
+    
+    Tools[45].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[45].Parent = plr.Character
+    
+    Tools[46].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[46].Parent = plr.Character
+    
+    Tools[47].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[47].Parent = plr.Character
+    
+    Tools[48].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[48].Parent = plr.Character
+    
+    Tools[49].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[49].Parent = plr.Character
+    
+    Tools[50].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[50].Parent = plr.Character
+    
+    Tools[51].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[51].Parent = plr.Character
+    
+    Tools[52].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[52].Parent = plr.Character
+    
+    Tools[53].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[53].Parent = plr.Character
+    
+    Tools[54].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[54].Parent = plr.Character
+    
+    Tools[55].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[55].Parent = plr.Character
+    
+    Tools[56].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[56].Parent = plr.Character
+    
+    Tools[57].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[57].Parent = plr.Character
+    
+    Tools[58].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[58].Parent = plr.Character
+    
+    Tools[59].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[59].Parent = plr.Character
+    
+    Tools[60].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[60].Parent = plr.Character
+    
+    Tools[61].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[61].Parent = plr.Character
+    
+    Tools[62].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[62].Parent = plr.Character
+    
+    Tools[63].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[63].Parent = plr.Character
+    
+    Tools[64].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[64].Parent = plr.Character
+    
+    Tools[65].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[65].Parent = plr.Character
+    
+    Tools[66].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[66].Parent = plr.Character
+    
+    Tools[67].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[67].Parent = plr.Character
+    
+    Tools[68].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[68].Parent = plr.Character
+    
+    Tools[69].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[69].Parent = plr.Character
+    
+    Tools[70].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[70].Parent = plr.Character
+    
+    Tools[71].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[71].Parent = plr.Character
+    
+    Tools[72].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[72].Parent = plr.Character
+    
+    Tools[73].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[73].Parent = plr.Character
+    
+    Tools[74].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[74].Parent = plr.Character
+    
+    Tools[75].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[75].Parent = plr.Character
+    
+    Tools[76].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[76].Parent = plr.Character
+    
+    Tools[77].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[77].Parent = plr.Character
+    
+    Tools[78].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[78].Parent = plr.Character
+    
+    Tools[79].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[79].Parent = plr.Character
+    
+    Tools[80].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[80].Parent = plr.Character
+    
+    Tools[81].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[81].Parent = plr.Character
+    
+    Tools[82].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[82].Parent = plr.Character
+    
+    Tools[83].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[83].Parent = plr.Character
+    
+    Tools[84].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[84].Parent = plr.Character
+    
+    Tools[85].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[85].Parent = plr.Character
+    
+    Tools[86].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[86].Parent = plr.Character
+    
+    Tools[87].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[87].Parent = plr.Character
+    
+    Tools[88].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[88].Parent = plr.Character
+    
+    Tools[89].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[89].Parent = plr.Character
+    
+    Tools[90].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[90].Parent = plr.Character
+    
+    Tools[91].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[91].Parent = plr.Character
+    
+    Tools[92].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[92].Parent = plr.Character
+    
+    Tools[93].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[93].Parent = plr.Character
+    
+    Tools[94].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[94].Parent = plr.Character
+    
+    Tools[95].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[95].Parent = plr.Character
+    
+    Tools[96].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[96].Parent = plr.Character
+    
+    Tools[97].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[97].Parent = plr.Character
+    
+    Tools[98].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[98].Parent = plr.Character
+    
+    Tools[99].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[99].Parent = plr.Character
+    
+    Tools[100].Grip = CFrame.new(1, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+    Tools[100].Parent = plr.Character
+
+end)
+--_______________________________________________________________________________________________
+
+Section:NewButton("LMG (54)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(0, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(0.4, 0, 0) * CFrame.Angles(-1.58, math.rad(160), -1.56)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-1, 2, 0) * CFrame.Angles(-1.58, math.rad(160), -1.56)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(-3.6, 2, 0) * CFrame.Angles(-1.58, math.rad(160), -1.56)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-2.6, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(-0.6, -1.3, -2) * CFrame.Angles(0, math.rad(180), -0.5)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(0.6, -1.3, -2) * CFrame.Angles(0, math.rad(180), 0.5)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(1.2, -0.2, -2) * CFrame.Angles(0, math.rad(180), 0)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(-1.2, -0.2, -2) * CFrame.Angles(0, math.rad(180), 0)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(1.2, 1, -2) * CFrame.Angles(0, math.rad(180), 0)
+Tools[10].Parent = plr.Character
+
+Tools[11].Grip = CFrame.new(-1.2, 1, -2) * CFrame.Angles(0, math.rad(180), 0)
+Tools[11].Parent = plr.Character
+
+Tools[12].Grip = CFrame.new(1.2, 2.3, -2) * CFrame.Angles(0, math.rad(180), 0)
+Tools[12].Parent = plr.Character
+
+Tools[13].Grip = CFrame.new(-1.2, 2.3, -2) * CFrame.Angles(0, math.rad(180), 0)
+Tools[13].Parent = plr.Character
+
+Tools[14].Grip = CFrame.new(2.2, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[14].Parent = plr.Character
+
+Tools[15].Grip = CFrame.new(2.2, 2.4, 0) * CFrame.Angles(-1.58, math.rad(-150), -1.56)
+Tools[15].Parent = plr.Character
+
+Tools[16].Grip = CFrame.new(-0.6, -1.3, -2.5) * CFrame.Angles(0, math.rad(180), -0.5)
+Tools[16].Parent = plr.Character
+
+Tools[17].Grip = CFrame.new(0.6, -1.3, -2.5) * CFrame.Angles(0, math.rad(180), 0.5)
+Tools[17].Parent = plr.Character
+
+Tools[18].Grip = CFrame.new(1.2, -0.2, -2.5) * CFrame.Angles(0, math.rad(180), 0)
+Tools[18].Parent = plr.Character
+
+Tools[19].Grip = CFrame.new(-1.2, -0.2, -2.5) * CFrame.Angles(0, math.rad(180), 0)
+Tools[19].Parent = plr.Character
+
+Tools[20].Grip = CFrame.new(1.2, 1, -2.5) * CFrame.Angles(0, math.rad(180), 0)
+Tools[20].Parent = plr.Character
+
+Tools[21].Grip = CFrame.new(-1.2, 1, -2.5) * CFrame.Angles(0, math.rad(180), 0)
+Tools[21].Parent = plr.Character
+
+Tools[22].Grip = CFrame.new(1.2, 2.3, -2.5) * CFrame.Angles(0, math.rad(180), 0)
+Tools[22].Parent = plr.Character
+
+Tools[23].Grip = CFrame.new(-1.2, 2.3, -2.5) * CFrame.Angles(0, math.rad(180), 0)
+Tools[23].Parent = plr.Character
+
+Tools[24].Grip = CFrame.new(4.8, -2, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[24].Parent = plr.Character
+
+Tools[25].Grip = CFrame.new(2.2, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[25].Parent = plr.Character
+
+Tools[26].Grip = CFrame.new(7.4, -2, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[26].Parent = plr.Character
+
+Tools[27].Grip = CFrame.new(10, -2, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[27].Parent = plr.Character
+
+Tools[27].Grip = CFrame.new(-1.1, -9.3, 0) * CFrame.Angles(1.58, math.rad(-180), 1.56)
+Tools[27].Parent = plr.Character
+
+Tools[28].Grip = CFrame.new(1.7, -9.3, 0) * CFrame.Angles(1.58, math.rad(-180), 1.56)
+Tools[28].Parent = plr.Character
+
+Tools[29].Grip = CFrame.new(7, -3.9, 0) * CFrame.Angles(1.58, math.rad(-130), 1.56)
+Tools[29].Parent = plr.Character
+
+Tools[30].Grip = CFrame.new(5, -3.9, 0) * CFrame.Angles(1.58, math.rad(-130), 1.56)
+Tools[30].Parent = plr.Character
+
+Tools[31].Grip = CFrame.new(3, -3.9, 0) * CFrame.Angles(1.58, math.rad(-130), 1.56)
+Tools[31].Parent = plr.Character
+
+Tools[32].Grip = CFrame.new(-1.6, -4.5, 0) * CFrame.Angles(1.58, math.rad(-160), 1.56)
+Tools[32].Parent = plr.Character
+
+Tools[33].Grip = CFrame.new(2.2, -3.9, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[33].Parent = plr.Character
+
+Tools[34].Grip = CFrame.new(-4.6, -2.9, 0) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+Tools[34].Parent = plr.Character
+
+Tools[35].Grip = CFrame.new(-3, 3.6, 0) * CFrame.Angles(1.58, math.rad(110), 1.58)
+Tools[35].Parent = plr.Character
+
+Tools[36].Grip = CFrame.new(-0, -3.9, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[36].Parent = plr.Character
+
+Tools[37].Grip = CFrame.new(-0, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[37].Parent = plr.Character
+
+Tools[38].Grip = CFrame.new(-2.6, -3.9, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[38].Parent = plr.Character
+
+Tools[39].Grip = CFrame.new(-2.6, -2.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[39].Parent = plr.Character
+
+Tools[40].Grip = CFrame.new(-5.2, -3.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[40].Parent = plr.Character
+
+Tools[41].Grip = CFrame.new(-5.2, -2.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[41].Parent = plr.Character
+
+Tools[42].Grip = CFrame.new(-5.2, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[42].Parent = plr.Character
+
+Tools[43].Grip = CFrame.new(-7.8, -3.6, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[43].Parent = plr.Character
+
+Tools[44].Grip = CFrame.new(-7.8, -2.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[44].Parent = plr.Character
+
+Tools[45].Grip = CFrame.new(-7.8, -1.3, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[45].Parent = plr.Character
+
+Tools[46].Grip = CFrame.new(-4.9, 7.6, 0) * CFrame.Angles(1.58, math.rad(-160), 1.56)
+Tools[46].Parent = plr.Character
+
+Tools[47].Grip = CFrame.new(0.6, 9.2, 0) * CFrame.Angles(1.58, math.rad(-200), 1.56)
+Tools[47].Parent = plr.Character
+
+Tools[48].Grip = CFrame.new(-10.4, -2.5, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[48].Parent = plr.Character
+
+Tools[49].Grip = CFrame.new(-13, -2.5, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[49].Parent = plr.Character
+
+Tools[50].Grip = CFrame.new(-15.6, -2.5, 0) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[50].Parent = plr.Character
+
+Tools[51].Grip = CFrame.new(-4.2, 11, 0) * CFrame.Angles(1.58, math.rad(-180), 1.56)
+Tools[51].Parent = plr.Character
+
+Tools[52].Grip = CFrame.new(0.9, 8, 0) * CFrame.Angles(1.58, math.rad(-180), 1.56)
+Tools[52].Parent = plr.Character
+
+Tools[53].Grip = CFrame.new(2.8, 8, -1.2) * CFrame.Angles(1.6, math.rad(-180), 2.3)
+Tools[53].Parent = plr.Character
+
+Tools[54].Grip = CFrame.new(2.8, 8, 1.6) * CFrame.Angles(1.6, math.rad(-180), 0.8)
+Tools[54].Parent = plr.Character
+
+end)
+
+--_________________________________________________________________________________________________
+
+local Section = Tab:NewSection("Boombox builds (skidded ones)")
+Section:NewButton("Ak47 (20)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(0.7, -0.5, -0.2) * CFrame.Angles(50, math.rad(-180), 3.13)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(0.5, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-1.5, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0.03)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(-2.5, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-4.6, -0.4, -0.2) * CFrame.Angles(1.6, math.rad(-98), 1.6)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(-7, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(-9.6, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(-12.2, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(-1.2, -3.1, -0.2) * CFrame.Angles(1.6, math.rad(-15), 1.6)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(-3.3, -2.7, -0.2) * CFrame.Angles(1.6, math.rad(-25), 1.6)
+Tools[10].Parent = plr.Character
+
+Tools[11].Grip = CFrame.new(-0.1, 1.8, -0.1) * CFrame.Angles(1.6, math.rad(65), 1.6)
+Tools[11].Parent = plr.Character
+
+Tools[12].Grip = CFrame.new(1.3, 2.05, -0.1) * CFrame.Angles(1.6, math.rad(90), 1.6)
+Tools[12].Parent = plr.Character
+
+Tools[13].Grip = CFrame.new(3.15, 2.05, -0.1) * CFrame.Angles(1.6, math.rad(90), 1.6)
+Tools[13].Parent = plr.Character
+
+Tools[14].Grip = CFrame.new(5.3, 2.05, -0.1) * CFrame.Angles(1.6, math.rad(90), 1.6)
+Tools[14].Parent = plr.Character
+
+Tools[15].Grip = CFrame.new(6.5, 4.1, -0.1) * CFrame.Angles(1.6, math.rad(110), 1.6)
+Tools[15].Parent = plr.Character
+
+Tools[16].Grip = CFrame.new(-14.3, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[16].Parent = plr.Character
+
+Tools[17].Grip = CFrame.new(3.1, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[17].Parent = plr.Character
+
+Tools[18].Grip = CFrame.new(5.2, -1.2, -0.2) * CFrame.Angles(0, math.rad(-90), 0)
+Tools[18].Parent = plr.Character
+
+Tools[19].Grip = CFrame.new(0.25, 6.8, -0.05) * CFrame.Angles(1.6, math.rad(-0), 1.6)
+Tools[19].Parent = plr.Character
+
+Tools[20].Grip = CFrame.new(3.8, -4.4, -0.27) * CFrame.Angles(1.6, math.rad(-137), 1.6)
+Tools[20].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("RPG (13)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(0.7, -0.5, -0.2) * CFrame.Angles(50, math.rad(-180), 3.13)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(0.7, -1.2, -0.2) * CFrame.Angles(1.6, math.rad(-98),1.6)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(2.5, -1.2, -0.2) * CFrame.Angles(1.6, math.rad(-98),1.6)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(4.3, -1.2, -0.2) * CFrame.Angles(1.6, math.rad(-98),1.6)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-6.5, -1.6, -0.2) * CFrame.Angles(1.6, math.rad(-250),1.6)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(6, -2.55, -0.2) * CFrame.Angles(1.6, math.rad(-115),1.6)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(1.55, 7.2, 0.1) * CFrame.Angles(1.6, math.rad(-10),1.6)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(-1.1, -1.2, -0.23) * CFrame.Angles(1.6, math.rad(-98),1.57)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(-2.8, -1.17, -0.17) * CFrame.Angles(1.6, math.rad(-99),1.6)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(0, 2.7, -0.2) * CFrame.Angles(1.575, math.rad(-175),1.575)
+Tools[10].Parent = plr.Character
+
+Tools[11].Grip = CFrame.new(-4.6, -1.1, -0.17) * CFrame.Angles(1.6, math.rad(-100),1.6)
+Tools[11].Parent = plr.Character
+
+Tools[12].Grip = CFrame.new(-6.3, -1.1, -0.17) * CFrame.Angles(1.6, math.rad(-100),1.6)
+Tools[12].Parent = plr.Character
+
+Tools[13].Grip = CFrame.new(-1, 6, -0.45) * CFrame.Angles(1.6, math.rad(-205),1.4)
+Tools[13].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Sword (10)", "", function()
+
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(0, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(0.15, 1.7, -0.02) * CFrame.Angles(1.58, math.rad(90), 1.58)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(3, -0.9, -0.05) * CFrame.Angles(1.58, math.rad(-45), 1.58)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(-3.1, -0.67, -0.049) * CFrame.Angles(1.58, math.rad(-135), 1.58)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(2.2, -0.3, -0.03) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(4.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(6.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(8.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(10.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(12.2, -0.3, 0) * CFrame.Angles(1.58, math.rad(-360), 1.58)
+Tools[10].Parent = plr.Character
+
+local hum = game.Players.LocalPlayer.Character.Humanoid
+    
+        for _,x in next, hum:GetPlayingAnimationTracks() do
+            if x.Animation then
+                x:Stop()
+            end
+        end
+        
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Pickaxe (8)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-0.4, 0.6, 0) * CFrame.Angles(1.6, math.rad(-180), 1.58)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(-2.7, 0.6, 0) * CFrame.Angles(1.6, math.rad(-180), 1.58)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-4.5, 0.6, 0) * CFrame.Angles(1.6, math.rad(-180), 1.58)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(-6.3, 0.6, 0) * CFrame.Angles(1.6, math.rad(-180), 1.58)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-0.3, 6.85, -0.4) * CFrame.Angles(38.5, math.rad(-270), 2.3)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(1.8, 6.85, -0.4) * CFrame.Angles(38.5, math.rad(-270), 2.3)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(3.3, 5.4, 0.32) * CFrame.Angles(1.6, math.rad(-320), 1.6)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(-2.42, 6.6, 0.32) * CFrame.Angles(1.6, math.rad(-220), 1.6)
+Tools[8].Parent = plr.Character
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Railgun (12)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(1.1, -1.2, 0) * CFrame.Angles(-1.58, math.rad(-108), -1.58)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(2.7, -1.2, 0.02) * CFrame.Angles(-1.58, math.rad(-108), -1.58)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(4.5, -2.34, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(4, 5.1, -0.07) * CFrame.Angles(-1.58, math.rad(-180), -1.58)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-5.6, 0.9, -0.07) * CFrame.Angles(-1.58, math.rad(-305), -1.58)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(-1.29, 3.5, -0.07) * CFrame.Angles(-1.58, math.rad(-262), -1.58)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(4, 1, -0.07) * CFrame.Angles(-1.58, math.rad(-193), -1.58)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(-2.8, -0.8, 0) * CFrame.Angles(-1.58, math.rad(-25), -1.58)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(0.8, 4.8, -0.07) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(-2.3, -3.8, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+Tools[10].Parent = plr.Character
+
+Tools[11].Grip = CFrame.new(-3, -3.8, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+Tools[11].Parent = plr.Character
+
+Tools[12].Grip = CFrame.new(3, 4.8, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+Tools[12].Parent = plr.Character
+        
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Railgun v2 (23)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(1.1, -1.2, 0) * CFrame.Angles(-1.58, math.rad(-108), -1.58)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(2.7, -1.2, 0.02) * CFrame.Angles(-1.58, math.rad(-108), -1.58)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(4.5, -2.34, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(4, 5.1, -0.07) * CFrame.Angles(-1.58, math.rad(-180), -1.58)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-5.6, 0.9, -0.07) * CFrame.Angles(-1.58, math.rad(-305), -1.58)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(-1.29, 3.5, -0.07) * CFrame.Angles(-1.58, math.rad(-262), -1.58)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(4, 1, -0.07) * CFrame.Angles(-1.58, math.rad(-193), -1.58)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(-2.8, -0.8, 0) * CFrame.Angles(-1.58, math.rad(-25), -1.58)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(0.8, 4.8, -0.07) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(0.6, -2.8, 0) * CFrame.Angles(-1.58, math.rad(-80), -1.58)
+Tools[10].Parent = plr.Character
+
+Tools[11].Grip = CFrame.new(-7.3, -2.3, 0) * CFrame.Angles(-1.58, math.rad(-45), -1.58)
+Tools[11].Parent = plr.Character
+
+Tools[12].Grip = CFrame.new(1.2, 3.95, -0.062) * CFrame.Angles(-1.58, math.rad(45), -1.58)
+Tools[12].Parent = plr.Character
+
+Tools[13].Grip = CFrame.new(4.3, 5.3, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+Tools[13].Parent = plr.Character
+
+Tools[14].Grip = CFrame.new(-4.3, -3.5, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+Tools[14].Parent = plr.Character
+
+Tools[15].Grip = CFrame.new(6.6, 5.3, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+Tools[15].Parent = plr.Character
+
+Tools[16].Grip = CFrame.new(-6.6, -3.5, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+Tools[16].Parent = plr.Character
+
+Tools[17].Grip = CFrame.new(8.8, 5.3, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+Tools[17].Parent = plr.Character
+
+Tools[18].Grip = CFrame.new(-8.8, -3.5, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+Tools[18].Parent = plr.Character
+
+Tools[19].Grip = CFrame.new(11, 5.3, -0.075) * CFrame.Angles(-1.58, math.rad(-270), -1.58)
+Tools[19].Parent = plr.Character
+
+Tools[20].Grip = CFrame.new(-11, -3.5, 0) * CFrame.Angles(-1.58, math.rad(-90), -1.58)
+Tools[20].Parent = plr.Character
+
+Tools[21].Grip = CFrame.new(3.7, 4.2, -0.075) * CFrame.Angles(-1.58, math.rad(-250), -1.58)
+Tools[21].Parent = plr.Character
+
+Tools[22].Grip = CFrame.new(-0.8, -4.1, 0) * CFrame.Angles(-1.58, math.rad(250), -1.58)
+Tools[22].Parent = plr.Character
+
+Tools[23].Grip = CFrame.new(-0.7, -0.2, -0.2) * CFrame.Angles(1.57, math.rad(-270), 0)
+Tools[23].Parent = plr.Character
+        
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Computer (11)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(0.8, 1.5, 0) * CFrame.Angles(1.575, math.rad(-180), 3.1)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(-0.8, -0.6, 0) * CFrame.Angles(1.575, math.rad(0), 3.1)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(3, 1.5, 0) * CFrame.Angles(1.575, math.rad(-180), 3.1)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(-3, -0.6, 0) * CFrame.Angles(1.575, math.rad(0), 3.1)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(5.2, 1.5, 0) * CFrame.Angles(1.575, math.rad(-180), 3.1)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(-5.2, -0.6, 0) * CFrame.Angles(1.575, math.rad(0), 3.1)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(1.1, 2.5, -2.95) * CFrame.Angles(1.575, math.rad(180), 4.68)
+Tools[7].Parent = plr.Character
+
+Tools[8].Grip = CFrame.new(-2.2, -3, -2.17) * CFrame.Angles(3.13, math.rad(0), 3.1)
+Tools[8].Parent = plr.Character
+
+Tools[9].Grip = CFrame.new(-4, -3, -2.1699) * CFrame.Angles(3.13, math.rad(0), 3.1)
+Tools[9].Parent = plr.Character
+
+Tools[10].Grip = CFrame.new(2.2, 3.9, -2.26) * CFrame.Angles(3.13, math.rad(0), -0.04)
+Tools[10].Parent = plr.Character
+
+Tools[11].Grip = CFrame.new(4, 3.9, -2.26) * CFrame.Angles(3.13, math.rad(0), -0.04)
+Tools[11].Parent = plr.Character
+        
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Boombox arm (4)", "", function()
+
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(0.6, -0.1, -0.4) * CFrame.Angles(1.58, math.rad(-90), 0)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(0.6, -0.1, -0.3625) * CFrame.Angles(1.58, math.rad(-90), 1.58)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(0.6, -0.1, -0.359) * CFrame.Angles(0, math.rad(-90), 1.58)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(0.6, -0.1, -0.4) * CFrame.Angles(0, math.rad(-90), -3.15)
+Tools[4].Parent = plr.Character
+        
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Phone (6)", "", function()
+        
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1, 0.5, 0) * CFrame.Angles(0.2, math.rad(-180), 58.1)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(2.5, -0, 0) * CFrame.Angles(-0.2, math.rad(-180), -58.13)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-2.5, 0.5, 0) * CFrame.Angles(0.2, math.rad(-180), 58.1)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(1, -0, 0) * CFrame.Angles(-0.2, math.rad(-180), -58.13)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-4, 0.5, 0) * CFrame.Angles(0.2, math.rad(-180), 58.1)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(4, -0, 0) * CFrame.Angles(-0.2, math.rad(-180), -58.13)
+Tools[6].Parent = plr.Character
+end)
+
+
+Section:NewButton("Small tophat (3)", "", function()
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1.5, -1.65, -1.9) * CFrame.Angles(1.58, math.rad(-180), 0)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(3.65, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-3.625, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+Tools[3].Parent = plr.Character
+        
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Big tophat (5)", "", function()
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1.5, -1.65, -1.9) * CFrame.Angles(1.58, math.rad(-180), 0)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(3.65, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-3.625, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(6.3, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-6.3, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+Tools[5].Parent = plr.Character
+        
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Huge tophat (7)", "", function()
+local plr = game:GetService("Players").LocalPlayer; plr.Character.Humanoid:UnequipTools()
+local Tools = plr.Backpack:GetChildren()
+
+Tools[1].Grip = CFrame.new(-1.5, -1.65, -1.9) * CFrame.Angles(1.58, math.rad(-180), 0)
+Tools[1].Parent = plr.Character
+
+Tools[2].Grip = CFrame.new(3.65, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+Tools[2].Parent = plr.Character
+
+Tools[3].Grip = CFrame.new(-3.625, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+Tools[3].Parent = plr.Character
+
+Tools[4].Grip = CFrame.new(6.3, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+Tools[4].Parent = plr.Character
+
+Tools[5].Grip = CFrame.new(-6.3, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+Tools[5].Parent = plr.Character
+
+Tools[6].Grip = CFrame.new(9, -1.65, -1.7) * CFrame.Angles(1.58, math.rad(180), -1.58)
+Tools[6].Parent = plr.Character
+
+Tools[7].Grip = CFrame.new(-9, -1.65, 1.25) * CFrame.Angles(1.58, math.rad(-180), 1.58)
+Tools[7].Parent = plr.Character
+        
+end)
+
+
+
+--_______________________________________________________________________________________________
+
+
+
+
+
+
+-- other scripts, these are not made by me but just stuff that might be useful, dm me if there are things u want added to this part
+
+
+local Tab = Window:NewTab("Useful Stuff")
+local Section = Tab:NewSection("Stuff")
+-- comments...
+
+Section:NewButton("Human dildo (r6 only)", "", function()
+
+    local ch = game.Players.LocalPlayer.Character
+    ch["Left Arm"]:Destroy()
+    ch["Right Arm"]:Destroy()
+    ch.Head.Mesh:Destroy()
+
+end)    
+
+Section:NewButton("AntiFling (only when standing still)", "", function()
+local plr = game.Players.LocalPlayer
+local UIS = game:GetService("UserInputService")
+
+game:GetService("RunService").RenderStepped:Connect(function(rs)
+    
+if plr.Character.Humanoid.MoveDirection.X == 0 or plr.Character.Humanoid.MoveDirection.Z == 0 then
+wait()
+plr.Character.HumanoidRootPart.Anchored = true
+end
+end)
+
+UIS.InputBegan:Connect(function(keypress, Chat)
+    if Chat then return end
+    wait()
+    if keypress.KeyCode.Name == "W" or "A" or "S" or "D" then
+    wait()
+    plr.Character.HumanoidRootPart.Anchored = false
+    end
+end)
+end)
+
+Section:NewTextBox("Void User", "Void", function(skytarget)
+
+
+
+    local plr = game:GetService("Players").LocalPlayer
+    local character = plr.Character
+    
+    local ogpos = character.HumanoidRootPart.Position
+    
+character.HumanoidRootPart.CFrame = CFrame.new(0,900000000,0)
+wait()
+
+local Character = game.Players.LocalPlayer.Character
+local Hum = {
+    "BodyTypeScale",
+    "BodyProportionScale",
+    "BodyWidthScale",
+    "BodyHeightScale",
+    "BodyDepthScale",
+    "HeadScale"
+}
+
+function Remove()
+    repeat task.wait() until Character.LeftFoot:FindFirstChild("OriginalSize")
+    Character.LeftFoot.OriginalSize:Destroy()
+    Character.LeftLowerLeg.OriginalSize:Destroy()
+    Character.LeftUpperLeg.OriginalSize:Destroy()
+end
+
+Character.LeftLowerLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+Character.LeftUpperLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+Character.LeftLowerLeg.LeftKneeRigAttachment:Destroy()
+Character.LeftUpperLeg.LeftKneeRigAttachment:Destroy()
+
+for i=1,6 do
+    Remove()
+    Character.Humanoid[Hum[i]]:Destroy()
+end
+
+wait(1)
+
+function getplayer(input)
+    local players = game:GetService("Players")
+
+    for _, v in pairs (players:GetPlayers()) do
+        if v.DisplayName:lower():sub(1, #input) == input:lower() then
+            return players[v.Name]
+        end
+    end
+end
+
+local user = getplayer(skytarget)
+
+
+NOW = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+game.Players.LocalPlayer.Character.Humanoid.Name = 1
+local l = game.Players.LocalPlayer.Character["1"]:Clone()
+l.Parent = game.Players.LocalPlayer.Character
+l.Name = "Humanoid"
+wait(0.1)
+game.Players.LocalPlayer.Character["1"]:Destroy()
+game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+game.Players.LocalPlayer.Character.Animate.Disabled = true
+wait(0.1)
+game.Players.LocalPlayer.Character.Animate.Disabled = false
+game.Players.LocalPlayer.Character.Humanoid.DisplayDistanceType = "None"
+for i,v in pairs(game:GetService'Players'.LocalPlayer.Backpack:GetChildren())do
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+local function tp(player,player2)
+local char1,char2=player.Character,player2.Character
+if char1 and char2 then
+char1.HumanoidRootPart.CFrame = char2.HumanoidRootPart.CFrame
+end
+end
+local function getout(player,player2)
+local char1,char2=player.Character,player2.Character
+if char1 and char2 then
+char1:MoveTo(char2.Head.Position)
+end
+end
+tp(user, game.Players.LocalPlayer)
+wait(0.1)
+tp(user, game.Players.LocalPlayer)
+wait(0.3)
+getout(game.Players.LocalPlayer, user)
+wait(0.2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
+
+
+wait()
+
+    character:BreakJoints()
+    plr.CharacterAdded:Wait()
+    character = plr.Character
+character:WaitForChild('HumanoidRootPart')
+wait(0.15)
+character.HumanoidRootPart.CFrame = CFrame.new(ogpos)
+
+end)
+
+
+Section:NewButton("Reload Character", "", function()
+game.Players.PlayerAdded:connect(function(plr)
+plr.CharacterAdded:connect(function(chr)
+ repeat wait() until chr.Humanoid
+ chr.Humanoid.Died:connect(function()
+  plr.LoadCharacter()
+ end)
+end)
+end)
+
+local plr = game:GetService("Players").LocalPlayer
+local character = plr.Character
+local ogpos = character.HumanoidRootPart.Position
+    character:BreakJoints()
+    plr.CharacterAdded:Wait()
+    character = plr.Character
+character:WaitForChild('HumanoidRootPart')
+wait(0.15)
+character.HumanoidRootPart.CFrame = CFrame.new(ogpos)
+
+end)
+
+Section:NewButton("R15 Goblin Walk", "", function()
+
+local Character = game.Players.LocalPlayer.Character
+local Hum = {
+    "BodyTypeScale",
+    "BodyProportionScale",
+    "BodyWidthScale",
+    "BodyHeightScale",
+    "BodyDepthScale",
+    "HeadScale"
+}
+
+function Remove()
+    repeat task.wait() until Character.LeftFoot:FindFirstChild("OriginalSize")
+    Character.LeftLowerLeg.OriginalSize:Destroy()
+    Character.LeftUpperLeg.OriginalSize:Destroy()
+end
+
+function Remove()
+    repeat task.wait() until Character.RightFoot:FindFirstChild("OriginalSize")
+    Character.RightLowerLeg.OriginalSize:Destroy()
+    Character.RightUpperLeg.OriginalSize:Destroy()
+end
+
+
+Character.LeftLowerLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+Character.LeftUpperLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+Character.LeftLowerLeg.LeftKneeRigAttachment:Destroy()
+Character.LeftUpperLeg.LeftKneeRigAttachment:Destroy()
+
+Character.RightLowerLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+Character.RightUpperLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+Character.RightLowerLeg.RightKneeRigAttachment:Destroy()
+Character.RightUpperLeg.RightKneeRigAttachment:Destroy()
+
+
+
+
+for i=1,6 do
+    Remove()
+    Character.Humanoid[Hum[i]]:Destroy()
+end
+
+game.Players.LocalPlayer.Character.Humanoid.Name = 1
+local l = game.Players.LocalPlayer.Character["1"]:Clone()
+l.Parent = game.Players.LocalPlayer.Character
+
+end)
+
+
+
+Section:NewButton("Rejoin", "", function()
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)    
+end)
+
+
+Section:NewButton("Unfocused Whitescreen", "", function()
+if not setfpscap then return end
+
+local UserInputService, RunService = game:GetService("UserInputService"), game:GetService("RunService")
+
+UserInputService.WindowFocusReleased:Connect(function()
+	RunService:Set3dRenderingEnabled(false); setfpscap(5)
+end)
+
+UserInputService.WindowFocused:Connect(function()
+	RunService:Set3dRenderingEnabled(true); setfpscap(360)
+end)
+end) 
+
+Section:NewButton("Generate Join Script to Clipboard", "", function()
+local join_script = string.format("game:GetService('TeleportService'):TeleportToPlaceInstance(%s, '%s', game:GetService('Players').LocalPlayer)", game.PlaceId, game.JobId)
+print(join_script)
+setclipboard(join_script)
+end)
+
+--_______________________________________________________________________________________________
+local Tab = Window:NewTab("Other Scripts")
+local Section = Tab:NewSection("Other Scripts")
+
+Section:NewButton("CMD-X", "", function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Infinite yield", "", function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))()
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Fling all (dont be annoying and abuse this)", "", function()
+
+-- Attempting to put the 2 fling loadstrings into 1 pastebin to fix them.
+loadstring(game:HttpGet("https://pastebin.com/raw/Ns8hkFDH", true))()
+
+end)
+
+--_______________________________________________________________________________________________
+
+Section:NewButton("Leg's FE Admin", "", function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/leg1337/legadmv2/main/legadminv2.lua'))()
+
+end)
+
+
+
+local Tab = Window:NewTab("UI Setting")
+
+
+    local Section = Tab:NewSection("Toggle UI")
+
+Section:NewKeybind("Select Keybind:", "keybind to toggle the gui", Enum.KeyCode.RightControl, function()
+	Library:ToggleUI()
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--_______________________________________________________________________________________________
+-- end of the ui so far, more stuff coming later when i actually learn lua lol
+
+
+--Player tags, this just exists so that people who use the script can see certain people
+--The pastebins are unlisted but still readable
+    
+    --Somn1ph0bia
+    loadstring(game:HttpGet("https://pastebin.com/raw/M4vHABZN", true))()
+    
+    --iswattable
+    loadstring(game:HttpGet("https://pastebin.com/raw/F1w3f2CQ", true))()
+    
+    --FalseValues
+     loadstring(game:HttpGet("https://pastebin.com/raw/cQnk83gM", true))()
+
+    --Somn1um
+    loadstring(game:HttpGet("https://pastebin.com/raw/zwuLQSET", true))()
+
+    --sad_Text123 (WHY, JUST WHY DID U WANT THIS?)
+    loadstring(game:HttpGet("https://pastebin.com/raw/xRStuTck", true))()  
+   end,
+})
+
+local OtherTab = Window:CreateTab("Other Scripts", 4483362458) -- Title, Image
+
+local Section = OtherTab:CreateSection("Infinite Yield")
+
+local Button = OtherTab:CreateButton({
+   Name = "Infinite Yield (Press Once)",
+   Callback = function()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))() 
+   end,
+})
